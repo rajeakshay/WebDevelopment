@@ -4,11 +4,11 @@
 #
 
 
-#  Returns the configured Node version - defaults to 0.8.24.
+#  Returns the configured Node version - defaults to 4.4.4.
 function get_node_version() {
    marker="$OPENSHIFT_REPO_DIR/.openshift/markers/NODEJS_VERSION"
    nodejs_ver=$(egrep -v "^\s*#.*" "$marker" | egrep -v "^\s*$" | tail -1)
-   echo "${nodejs_ver:-"0.8.24"}"
+   echo "${nodejs_ver:-"4.4.4"}"
 
 }  #  End of function  get_node_version.
 
@@ -53,9 +53,8 @@ function get_node_tmp_dir() {
 function _install_nodejs() {
    ver=${1:-"$(get_node_version)"}
 
-   # Sample download links:
-   #    http://nodejs.org/dist/v0.8.24/node-v0.8.24-linux-x64.tar.gz
-   #    http://nodejs.org/dist/v0.10.10/node-v0.10.10-linux-x64.tar.gz
+   # Sample download link:
+   #    http://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.gz
    zfile="node-v${ver}-linux-x64.tar.gz"
    zlink="http://nodejs.org/dist/v${ver}/${zfile}"
 
