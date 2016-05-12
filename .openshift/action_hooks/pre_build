@@ -4,11 +4,10 @@
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
-
 #  Source utility functions.
 source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
 
-#  Ensure custom node version if not installed.
+#  Ensure custom node version is installed.
 echo ""
 ensure_node_is_installed
 

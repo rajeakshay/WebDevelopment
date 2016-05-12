@@ -19,7 +19,6 @@ source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
 #  Get the node version.
 ver=$(get_node_version)
 
-
 #  Set URI to the custom sample /env route.
 app_uri="http://$OPENSHIFT_GEAR_DNS/env"
 
@@ -37,5 +36,3 @@ if [ "$zcode" -eq 200 ]; then
    echo "  - Version from test URI = $(curl -s $app_uri | grep 'Version')"
    echo ""
 fi
-
-

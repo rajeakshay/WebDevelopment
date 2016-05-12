@@ -13,7 +13,6 @@
 # Application start and stop is subject to different timeouts
 # throughout the system.
 
-
 #  Source utility functions.
 source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
 
@@ -22,4 +21,3 @@ ver=$(get_node_version)
 echo ""
 echo "  - pre_start_nodejs: Adding Node.js version $ver binaries to path"
 _SHOW_SETUP_PATH_MESSAGES="true" setup_path_for_custom_node_version
-
