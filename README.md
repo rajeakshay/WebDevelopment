@@ -12,7 +12,7 @@ Openshift MongoDB version: `v3.2.6`
 1. Using Openshift Web Console, create an application and install `nodejs-0.10` cartridge provided by Openshift.
 2. Using Openshift Web Console, go to **Or, see the entire list of cartridges you can add**, paste the URL below in **Install your own cartridge** textbox at the bottom of the page and click **Next**.
 
-        https://github.com/rajeakshay/openshift-cartridge-mongodb/blob/mongo3.2.6/metadata/manifest.yml
+        https://cdn.rawgit.com/rajeakshay/openshift-cartridge-mongodb/mongo3.2.6/metadata/manifest.yml
 
 3. The URL to Openshift Git repository can be found on Openshift Web Console's application dashboard. It looks something like `ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git`. In your terminal, `git clone` this repository and add your Openshift Git repository as a remote repository.
 
