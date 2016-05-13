@@ -13,14 +13,14 @@ MongoDB Community Edition version: `v3.2.6`
 
         https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml
         
-  This will install a catridge with **latest** version of **MongoDB Community Edition**. Note that this cartridge is bare-bones and provides `mongod` daemon with WiredTiger storage engine only. `mongo` shell and other goodies are not available and are not needed.
+  This will install a cartridge with **latest** version of **MongoDB Community Edition**. Note that this cartridge is bare-bones and provides `mongod` daemon with WiredTiger storage engine only. `mongo` shell and other goodies are not available and are not needed.
 3. The URL to your application's Openshift Git repository can be found on Openshift Web Console's application dashboard. It looks something like `ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git`. In your terminal, `git clone` `raje-akshay-web-dev` repository and add your application's Openshift Git repository as a remote repository.
 
         git clone https://github.com/rajeakshay/raje-akshay-web-dev.git
         git remote add openshift ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git
 
 4. By default, `nodejs` cartridge will be updated with **Node.js version 4.4.4**. To specify another version of Node.js, edit the **.openshift/markers/NODEJS_VERSION** file. Commit any changes using `git commit -a -m "<YOUR MESSAGE>"`. 
-5. For the first time, force push the code in your local repository to the application's Openshift Git repository.
+5. For the first time, force push the code from your local repository to the application's Openshift Git repository.
 
         git push openshift master -f
 
@@ -56,9 +56,9 @@ MongoDB Community Edition version: `v3.2.6`
 
         git clone https://github.com/rajeakshay/raje-akshay-web-dev.git
 
-4. Navigate inside the project directory `raje-akshay-web-dev` and install required `node` modules using `npm install`.
-5. From inside the project directory, run the project using `node server.js`.
-6. In your browser, visit `http://localhost:3000` and test the application.  
+4. Navigate to the project directory `raje-akshay-web-dev` and install required `node` modules using command `npm install`.
+5. From inside the project directory, run the server using command `node server.js`.
+6. Open `http://localhost:3000` in your browser and test the application.  
 7. To modify code in an IDE, first set a run configuration stating `node` interpreter and the start up script as `server.js`. Follow your particular IDE's documentation for step-by-step instructions on how to specify run configurations for Node.js projects.
 
 # Contributing
