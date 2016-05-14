@@ -1,4 +1,4 @@
-# CS5610 Web Development
+# CS5610 Web Development [![GitHub license](https://img.shields.io/github/license/rajeakshay/raje-akshay-web-dev.svg?style=plastic)](https://github.com/rajeakshay/raje-akshay-web-dev/blob/master/LICENSE.md)
 Developing sites that are dynamic, data driven and interactive - [http://webdev-amraje.rhcloud.com/](http://webdev-amraje.rhcloud.com/)  
 
 RedHat Openshift Online application details:  
