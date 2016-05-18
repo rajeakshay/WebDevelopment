@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>Profile</title>
+	<link href="../../img/favicon.ico" rel="icon" type="image/x-icon"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../../css/styles.css"/>
 </head>
 <body>
-
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<p class="navbar-text pull-left">
+			<a class="navbar-brand" href="#">Profile</a>
+		</p>
+		<p class="navbar-text pull-right">
+			<a class="navbar-link" href="#">
+				<span class="glyphicon glyphicon-ok"></span>
+			</a>
+		</p>
+	</div>
+</nav>
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control" id="username" placeholder="Username"/>
+		</div>
+		<div class="form-group">
+			<label for="email">Email Address</label>
+			<input type="email" class="form-control" id="email" placeholder="john@example.com"/>
+		</div>
+		<div class="form-group">
+			<label for="first-name">First Name</label>
+			<input type="text" class="form-control" id="first-name" placeholder="John"/>
+		</div>
+		<div class="form-group">
+			<label for="last-name">Last Name</label>
+			<input type="text" class="form-control" id="last-name" placeholder="Doe">
+		</div>
+	</form>
+	<a href="../website/website-list.html" class="btn btn-primary btn-block">Websites</a>
+	<a href="login.html" class="btn btn-danger btn-block">Logout</a>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+	<div class="container">
+		<p class="navbar-text pull-right">
+			<a href="#" class="navbar-link">
+				<span class="glyphicon glyphicon-user"></span>
+			</a>
+		</p>
+	</div>
+</nav>
 </body>
 </html>

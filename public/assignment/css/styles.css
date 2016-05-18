@@ -1,6 +1,19 @@
 /*
 Custom CSS styles for Website Maker app
 */
-.body{
-
+input.form-control{
+	margin-bottom: 5px;
+}
+/* Clear margins and only keep side-padding for navbar brand */
+nav>div>p.pull-left{
+	padding: 0 10px;
+	margin: 0;
+}
+/* Clear margins and only keep sufficient padding for glyphicons in navbar */
+nav>div>p.pull-right{
+	padding: 10px 10px 5px 10px;
+	margin: 0;
+}
+body{
+	padding-top: 70px;
 }
