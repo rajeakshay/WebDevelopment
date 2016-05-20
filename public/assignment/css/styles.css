@@ -1,19 +1,24 @@
-/*
-Custom CSS styles for Website Maker app
-*/
+/******************
+Custom CSS styles
+*******************/
+.pseudo-margin {
+	margin: 0 -15px;
+}
+.stick-to-left{
+	float: left!important;
+}
+.stick-to-right{
+	float: right!important;
+	margin: 15px 0px;
+	padding-right: 5px;
+}
+.navbar-brand{
+	font-weight: bold;
+}
 input.form-control{
 	margin-bottom: 5px;
 }
-/* Clear margins and only keep side-padding for navbar brand */
-nav>div>p.pull-left{
-	padding: 0 10px;
-	margin: 0;
-}
-/* Clear margins and only keep sufficient padding for glyphicons in navbar */
-nav>div>p.pull-right{
-	padding: 10px 10px 5px 10px;
-	margin: 0;
-}
-body{
-	padding-top: 70px;
+body {
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
