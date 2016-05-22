@@ -15,6 +15,15 @@ Custom CSS styles
 .navbar-brand{
 	font-weight: bold;
 }
+.borderless{
+	border: none;
+}
+.left-chevron{
+	padding: 15px;
+}
+.left-padding-adjusted{
+	padding-left: 15px;
+}
 input.form-control{
 	margin-bottom: 5px;
 }
