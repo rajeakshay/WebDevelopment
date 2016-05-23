@@ -24,6 +24,9 @@ Custom CSS styles
 .left-padding-adjusted{
 	padding-left: 15px;
 }
+a:hover{
+	text-decoration: none;
+}
 input.form-control{
 	margin-bottom: 5px;
 }
