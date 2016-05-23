@@ -15,6 +15,9 @@ Custom CSS styles
 .navbar-brand{
 	font-weight: bold;
 }
+.right-separator{
+	padding-right: 10px;
+}
 .borderless{
 	border: none;
 }
@@ -26,6 +29,23 @@ Custom CSS styles
 }
 .list-group-item{
 	padding-right: 6px;
+}
+.footer-left{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
+.widget-tool{
+	position: absolute;
+	right: 0px;
+	background-color: white;
+	padding: 5px 10px 10px 10px;
+	border-bottom-left-radius: 8px;
+	opacity: 0.8;
+	z-index: 1;
+}
+div.footer-left a{
+	padding-right: 15px;
 }
 a:hover{
 	text-decoration: none;
