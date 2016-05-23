@@ -24,6 +24,9 @@ Custom CSS styles
 .left-padding-adjusted{
 	padding-left: 15px;
 }
+.list-group-item{
+	padding-right: 6px;
+}
 a:hover{
 	text-decoration: none;
 }
