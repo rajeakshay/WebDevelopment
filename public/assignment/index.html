@@ -8,12 +8,13 @@
 	<title>Assignment Home Page</title>
 	<link href="/assignment/img/favicon.ico" rel="icon" type="image/x-icon"/>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/assignment/css/styles.css" rel="stylesheet"/>
+	<!-- Turn the website into an Angular application -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+	<script src="app.js"></script>
 </head>
 <body>
-<div class="container">
-	<h1 class="text-primary">Assignment Home Page</h1>
-	<h5><a href="views/user/login.html">Visit Login Page</a></h5>
-	<h5><a href="views/user/register.html">Visit Registration Page</a></h5>
-</div>
+	<div ng-view></div>
 </body>
 </html>

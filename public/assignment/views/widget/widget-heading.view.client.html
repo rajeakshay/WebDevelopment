@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-	<title>Widget Edit</title>
-	<link href="/assignment/img/favicon.ico" rel="icon" type="image/x-icon"/>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="/assignment/css/styles.css" rel="stylesheet"/>
-</head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header stick-to-left left-chevron">
@@ -34,15 +21,19 @@
 		</div>
 		<div class="form-group">
 			<label for="widget-text">Text</label>
-			<input type="text" class="form-control" id="widget-text"/>
+			<input type="text" class="form-control" id="widget-text" value="Golden State Warriors win Game 2 vs OKC in NBA playoffs"/>
 		</div>
 		<div class="form-group">
-			<label for="widget-url">URL</label>
-			<input type="url" class="form-control" id="widget-url" value="https://www.youtube.com/embed/BJ49oFHyZ94"/>
-		</div>
-		<div class="form-group">
-			<label for="widget-width">Width</label>
-			<input type="text" class="form-control" id="widget-width"/>
+			<label for="widget-size">Size</label>
+			<select id="widget-size" class="form-control">
+				<option disabled>Select size</option>
+				<option>1</option>
+				<option>2</option>
+				<option selected>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+			</select>
 		</div>
 	</form>
 	<a class="btn btn-danger btn-block" href="/assignment/views/widget/widget-list.html">Delete</a>
@@ -56,5 +47,3 @@
 		</div>
 	</div>
 </nav>
-</body>
-</html>
