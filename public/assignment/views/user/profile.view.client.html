@@ -4,42 +4,44 @@
 			<a class="navbar-brand" href="">Profile</a>
 		</div>
 		<div class="stick-to-right">
-			<a href="" class="navbar-link">
+			<a ng-click="model.updateUser(model.user)" href="#/user/{{model.user._id}}" class="navbar-link">
 				<span class="glyphicon glyphicon-ok"></span>
 			</a>
 		</div>
 	</div>
 </nav>
 <div class="container">
-	<div class="alert alert-success alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<strong>Success!</strong> Your profile was saved.
+	<div ng-if="model.updateError" class="alert alert-danger alert-dismissible">
+		<strong>{{model.updateError}}</strong>Failed to update your profile.
+	</div>
+	<div ng-if="model.updateSuccess" class="alert alert-success alert-dismissible">
+		<strong>{{model.updateSuccess}}</strong>Your profile was saved.
 	</div>
 	<form>
 		<div class="form-group">
 			<label for="username">Username</label>
-			<input type="text" class="form-control" id="username" placeholder="Username"/>
+			<input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username"/>
 		</div>
 		<div class="form-group">
 			<label for="email">Email Address</label>
-			<input type="email" class="form-control" id="email" placeholder="john@example.com"/>
+			<input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="john@example.com"/>
 		</div>
 		<div class="form-group">
 			<label for="first-name">First Name</label>
-			<input type="text" class="form-control" id="first-name" placeholder="John"/>
+			<input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="John"/>
 		</div>
 		<div class="form-group">
 			<label for="last-name">Last Name</label>
-			<input type="text" class="form-control" id="last-name" placeholder="Doe">
+			<input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Doe">
 		</div>
 	</form>
-	<a href="/assignment/views/website/website-list.html" class="btn btn-primary btn-block">Websites</a>
-	<a href="/assignment/views/user/login.html" class="btn btn-danger btn-block">Logout</a>
+	<a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
+	<a href="#/login" class="btn btn-danger btn-block">Logout</a>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
 		<div class="pseudo-margin stick-to-right">
-			<a href="">
+			<a href="#/user/{{model.user._id}}">
 				<span class="glyphicon glyphicon-user"></span>
 			</a>
 		</div>
