@@ -1,49 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header stick-to-left left-chevron">
-			<a href="/assignment/views/widget/widget-list.html" class="navbar-link">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a>
-		</div>
-		<a class="navbar-brand left-padding-adjusted" href="">Widget Edit</a>
-		<div class="stick-to-right">
-			<a href="/assignment/views/widget/widget-list.html" class="navbar-link">
-				<span class="glyphicon glyphicon-ok"></span>
-			</a>
-		</div>
-	</div>
-</nav>
-<div class="container">
-	<form>
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name"/>
-		</div>
-		<div class="form-group">
-			<label for="widget-text">Text</label>
-			<input type="text" class="form-control" id="widget-text" value="Golden State Warriors win Game 2 vs OKC in NBA playoffs"/>
-		</div>
-		<div class="form-group">
-			<label for="widget-size">Size</label>
-			<select id="widget-size" class="form-control">
-				<option disabled>Select size</option>
-				<option>1</option>
-				<option>2</option>
-				<option selected>3</option>
-				<option>4</option>
-				<option>5</option>
-				<option>6</option>
-			</select>
-		</div>
-	</form>
-	<a class="btn btn-danger btn-block" href="/assignment/views/widget/widget-list.html">Delete</a>
+<div class="form-group">
+	<label for="widget-size">Size</label>
+	<select ng-model="model.widget.size" id="widget-size" class="form-control">
+		<option disabled>Select size</option>
+		<option>1</option>
+		<option>2</option>
+		<option selected>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+	</select>
 </div>
-<nav class="navbar navbar-default navbar-fixed-bottom">
-	<div class="container">
-		<div class="pseudo-margin stick-to-right">
-			<a href="/assignment/views/user/profile.html">
-				<span class="glyphicon glyphicon-user"></span>
-			</a>
-		</div>
-	</div>
-</nav>

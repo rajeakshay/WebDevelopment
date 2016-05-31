@@ -1,73 +1,51 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header stick-to-left left-chevron">
-			<a href="/assignment/views/page/page-list.html" class="navbar-link">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
 		</div>
 		<a class="navbar-brand left-padding-adjusted" href="">Widgets</a>
 		<div class="stick-to-right">
-			<a href="/assignment/views/widget/widget-chooser.html" class="navbar-link">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
 				<span class="glyphicon glyphicon-plus"></span>
 			</a>
 		</div>
 	</div>
 </nav>
 <div class="container">
-	<div>
+	<div ng-repeat="widget in model.widgets">
 		<div class="widget-tool">
-			<a href="/assignment/views/widget/widget-heading.html">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
 				<span class="glyphicon glyphicon-cog right-separator"></span>
 			</a>
 			<span class="glyphicon glyphicon-align-justify"></span>
 		</div>
-		<h1>NBA 2015</h1>
-	</div>
-	<div>
-		<div class="widget-tool">
-			<a href="/assignment/views/widget/widget-heading.html">
-				<span class="glyphicon glyphicon-cog right-separator"></span>
-			</a>
-			<span class="glyphicon glyphicon-align-justify"></span>
-		</div>
-		<h3>Golden State Warriors capture NBA 2015 championship</h3>
-	</div>
-	<div>
-		<div class="widget-tool">
-			<a href="/assignment/views/widget/widget-image.html">
-				<span class="glyphicon glyphicon-cog right-separator"></span>
-			</a>
-			<span class="glyphicon glyphicon-align-justify"></span>
-		</div>
-		<img width="100%" src="http://sportstorque.co/wp-content/uploads/2015/06/Golden-State.jpg"/>
-	</div>
-	<div>
-		<div class="widget-tool">
-			<a href="">
-				<span class="glyphicon glyphicon-cog right-separator"></span>
-			</a>
-			<span class="glyphicon glyphicon-align-justify"></span>
-		</div>
-		<p>Golden State Warriors celebrated their first NBA championship in 40 years when the final buzzer sounded and the players formed a frantic mob at the center court as silence fell over the sellout crowd who came pouring in to support local favorites Cleveland Cavaliers. <a href="http://www.nytimes.com/2015/06/17/sports/basketball/nba-finals-2015-warriors-win-title-beating-cavaliers.html?_r=0">Read more ...</a></p>
-	</div>
-	<div>
-		<div class="widget-tool">
-			<a href="/assignment/views/widget/widget-heading.html">
-				<span class="glyphicon glyphicon-cog right-separator"></span>
-			</a>
-			<span class="glyphicon glyphicon-align-justify"></span>
-		</div>
-		<h4>MVP Stephen Curry's top 10 plays of 2014-2015 season</h4>
-	</div>
-	<div>
-		<div class="widget-tool">
-			<a href="/assignment/views/widget/widget-youtube.html">
-				<span class="glyphicon glyphicon-cog right-separator"></span>
-			</a>
-			<span class="glyphicon glyphicon-align-justify"></span>
-		</div>
-		<div class="embed-responsive embed-responsive-16by9">
-			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/BJ49oFHyZ94"></iframe>
+		<div ng-switch="widget.widgetType">
+			<div ng-switch-when="HEADER" ng-switch="widget.size">
+				<h1 ng-switch-when="1">{{widget.text}}</h1>
+				<h2 ng-switch-when="2">{{widget.text}}</h2>
+				<h3 ng-switch-when="3">{{widget.text}}</h3>
+				<h4 ng-switch-when="4">{{widget.text}}</h4>
+				<h5 ng-switch-when="5">{{widget.text}}</h5>
+				<h6 ng-switch-when="6">{{widget.text}}</h6>
+			</div>
+			<div ng-switch-when="HTML">
+				<div ng-bind-html="model.getSafeHtml(widget)"></div>
+			</div>
+			<div ng-switch-when="IMAGE">
+				<img class="img-responsive" ng-src="{{widget.url}}" width="{{widget.width}}"/>
+			</div>
+			<div ng-switch-when="YOUTUBE">
+				<iframe ng-src="{{model.getSafeUrl(widget)}}"
+				        width="{{widget.width}}"
+				        height="100%"
+				        frameborder="0"
+				        allowfullscreen></iframe>
+			</div>
+			<div ng-switch-default>
+				Unable to render widget {{widget}}
+			</div>
 		</div>
 	</div>
 </div>
@@ -82,7 +60,7 @@
 			</a>
 		</div>
 		<div class="pseudo-margin stick-to-right">
-			<a href="/assignment/views/user/profile.html">
+			<a href="#/user/{{model.userId}}">
 				<span class="glyphicon glyphicon-user"></span>
 			</a>
 		</div>

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header stick-to-left left-chevron">
-			<a href="/assignment/views/widget/widget-list.html" class="navbar-link">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+			   class="navbar-link">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
 		</div>
@@ -11,7 +12,7 @@
 <div class="container">
 	<ul class="list-group">
 		<li class="list-group-item borderless">
-			<a href="/assignment/views/widget/widget-heading.html">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myheader">
 				Header
 			</a>
 		</li>
@@ -41,12 +42,12 @@
 			</a>
 		</li>
 		<li class="list-group-item borderless">
-			<a href="/assignment/views/widget/widget-image.html">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myimage">
 				Image
 			</a>
 		</li>
 		<li class="list-group-item borderless">
-			<a href="/assignment/views/widget/widget-youtube.html">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myyoutube">
 				YouTube
 			</a>
 		</li>
@@ -65,7 +66,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
 		<div class="pseudo-margin stick-to-right">
-			<a href="/assignment/views/user/profile.html">
+			<a href="#/user/{{model.userId}}">
 				<span class="glyphicon glyphicon-user"></span>
 			</a>
 		</div>
