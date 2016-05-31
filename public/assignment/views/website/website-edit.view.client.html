@@ -1,35 +1,48 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header stick-to-left left-chevron">
-			<a href="/assignment/views/website/website-list.html" class="navbar-link">
+			<a href="#/user/{{model.userId}}/website" class="navbar-link">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
 		</div>
 		<a class="navbar-brand left-padding-adjusted" href="">Edit Website</a>
 		<div class="stick-to-right">
-			<a href="/assignment/views/website/website-list.html" class="navbar-link">
+			<a ng-click="model.updateWebsite(model.website)" class="navbar-link">
 				<span class="glyphicon glyphicon-ok"></span>
 			</a>
 		</div>
 	</div>
 </nav>
 <div class="container">
+	<div ng-if="model.error" class="alert alert-danger">
+		{{model.error}}
+	</div>
 	<form>
 		<div class="form-group">
 			<label for="name">Website Name</label>
-			<input type="text" class="form-control" id="name" placeholder="Website Name" value="Blogger"/>
+			<input ng-model="model.website.name"
+			       type="text"
+			       class="form-control"
+			       id="name"
+			       placeholder="Website Name"
+			       value="Blogger"/>
 		</div>
 		<div class="form-group">
 			<label for="description">Website Description</label>
-			<textarea rows="4" class="form-control" id="description" placeholder="Website Description">This is some random text thrown in for this mock-up to look good. Textarea serves as a nice container to write high quality content. Edit this text until you are satisfied.	</textarea>
+			<textarea ng-model="model.website.description"
+			          rows="4"
+			          class="form-control"
+			          id="description"
+			          placeholder="Website Description">This is some random text thrown in for this mock-up to look good. Textarea serves as a nice container to write high quality content. Edit this text until you are satisfied.
+			</textarea>
 		</div>
 	</form>
-	<a class="btn btn-danger btn-block" href="/assignment/views/website/website-list.html">Delete</a>
+	<a class="btn btn-danger btn-block" ng-click="model.deleteWebsite(model.websiteId)">Delete</a>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
 		<div class="pseudo-margin stick-to-right">
-			<a href="/assignment/views/user/profile.html">
+			<a href="#/user/{{model.userId}}">
 				<span class="glyphicon glyphicon-user"></span>
 			</a>
 		</div>

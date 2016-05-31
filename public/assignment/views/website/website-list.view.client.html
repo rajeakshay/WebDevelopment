@@ -4,7 +4,7 @@
 			<a class="navbar-brand" href="">Websites</a>
 		</div>
 		<div class="stick-to-right">
-			<a href="/assignment/views/website/website-new.html" class="navbar-link">
+			<a href="#/user/{{model.userId}}/website/new" class="navbar-link">
 				<span class="glyphicon glyphicon-plus"></span>
 			</a>
 		</div>
@@ -12,64 +12,12 @@
 </nav>
 <div class="container">
 	<ul class="list-group">
-		<li class="list-group-item borderless">
-			<a href="/assignment/views/page/page-list.html">
-				Wired
+		<li ng-repeat="website in model.websites" class="list-group-item borderless">
+			<a href="#/user/{{website.developerId}}/website/{{website._id}}/page">
+				{{website.name}}
 			</a>
 			<p class="pull-right">
-				<a href="/assignment/views/website/website-edit.html">
-					<span class="glyphicon glyphicon-cog"></span>
-				</a>
-				<a href="">
-					<span class="glyphicon glyphicon-play"></span>
-				</a>
-			</p>
-		</li>
-		<li class="list-group-item borderless">
-			<a href="/assignment/views/page/page-list.html">
-				Inc.com
-			</a>
-			<p class="pull-right">
-				<a href="/assignment/views/website/website-edit.html">
-					<span class="glyphicon glyphicon-cog"></span>
-				</a>
-				<a href="">
-					<span class="glyphicon glyphicon-play"></span>
-				</a>
-			</p>
-		</li>
-		<li class="list-group-item borderless">
-			<a href="/assignment/views/page/page-list.html">
-				Twitter
-			</a>
-			<p class="pull-right">
-				<a href="/assignment/views/website/website-edit.html">
-					<span class="glyphicon glyphicon-cog"></span>
-				</a>
-				<a href="">
-					<span class="glyphicon glyphicon-play"></span>
-				</a>
-			</p>
-		</li>
-		<li class="list-group-item borderless">
-			<a href="/assignment/views/page/page-list.html">
-				Facebook
-			</a>
-			<p class="pull-right">
-				<a href="/assignment/views/website/website-edit.html">
-					<span class="glyphicon glyphicon-cog"></span>
-				</a>
-				<a href="">
-					<span class="glyphicon glyphicon-play"></span>
-				</a>
-			</p>
-		</li>
-		<li class="list-group-item borderless">
-			<a href="/assignment/views/page/page-list.html">
-				Google
-			</a>
-			<p class="pull-right">
-				<a href="/assignment/views/website/website-edit.html">
+				<a href="#/user/{{website.developerId}}/website/{{website._id}}">
 					<span class="glyphicon glyphicon-cog"></span>
 				</a>
 				<a href="">
@@ -82,7 +30,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
 		<div class="pseudo-margin stick-to-right">
-			<a href="/assignment/views/user/profile.html">
+			<a href="#/user/{{model.userId}}">
 				<span class="glyphicon glyphicon-user"></span>
 			</a>
 		</div>
