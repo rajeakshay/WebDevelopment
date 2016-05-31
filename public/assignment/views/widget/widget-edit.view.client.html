@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header stick-to-left left-chevron">
+			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+			   class="navbar-link">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+		</div>
+		<a class="navbar-brand left-padding-adjusted" href="">Edit Widget</a>
+		<div class="stick-to-right">
+			<a ng-click="model.updateWidget()" class="navbar-link">
+				<span class="glyphicon glyphicon-ok"></span>
+			</a>
+		</div>
+	</div>
+</nav>
+<div class="container">
+	<div ng-if="model.error" class="alert alert-danger">
+		{{model.error}}
+	</div>
+	<form>
+		<div class="form-group">
+			<label for="widget-name">Name</label>
+			<input ng-model="model.widget.name"
+			       type="text"
+			       class="form-control"
+			       id="widget-name"
+			       placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label for="widget-text">Text</label>
+			<input ng-model="model.widget.text"
+			       type="text"
+			       class="form-control"
+			       id="widget-text"
+			       placeholder="Widget Text">
+		</div>
+		<div ng-switch="model.widget.widgetType">
+			<div ng-switch-when="HEADER">
+				<ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
+			</div>
+			<div ng-switch-when="IMAGE">
+				<ng-include src="'views/widget/widget-image.view.client.html'"></ng-include>
+			</div>
+			<div ng-switch-when="YOUTUBE">
+				<ng-include src="'views/widget/widget-youtube.view.client.html'"></ng-include>
+			</div>
+		</div>
+	</form>
+	<a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+	<div class="container">
+		<div class="pseudo-margin stick-to-right">
+			<a href="#/user/{{model.userId}}">
+				<span class="glyphicon glyphicon-user"></span>
+			</a>
+		</div>
+	</div>
+</nav>

@@ -65,8 +65,8 @@
 				};
 				id = _userUniqueId;
 				users.push(user);
+				console.log(newUser.username + " created with ID " + id);
 			}
-			console.log(newUser.username + " created with ID " + id);
 			return id;
 		}
 
