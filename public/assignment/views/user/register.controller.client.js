@@ -12,12 +12,23 @@
 				password : password,
 				verifyPassword: verifyPassword
 			};
-			var id = UserService.createUser(user);
-			if(id != -1){
-				$location.url("/user/"+id);
+			// Given username, password and verify password fields should not be blank
+			if (!user.username || !user.password || !user.verifyPassword) {
+				vm.error = "Error! One of the fields is left blank.";
 			}
-			else{
-				vm.error = "Error! Check the given username and passwords again.";
+			// Password and Verify Password fields should exactly match
+			else if (user.password != user.verifyPassword) {
+				vm.error = "Error! Password and Verify Password do not match.";
+			}
+			else {
+				UserService
+					.createUser(user)
+					.then(function(response){
+						var newUser = response.data;
+						if(newUser) {
+							$location.url("/user/"+ newUser._id);
+						}
+					});
 			}
 		};
 

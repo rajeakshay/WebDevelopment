@@ -11,6 +11,9 @@
 	</div>
 </nav>
 <div class="container">
+	<div ng-if="model.deleteError" class="alert alert-danger alert-dismissible">
+		<strong>{{model.deleteError}}</strong>Failed to unregister your profile.
+	</div>
 	<div ng-if="model.updateError" class="alert alert-danger alert-dismissible">
 		<strong>{{model.updateError}}</strong>Failed to update your profile.
 	</div>
@@ -37,6 +40,7 @@
 	</form>
 	<a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
 	<a href="#/login" class="btn btn-danger btn-block">Logout</a>
+	<a ng-click="model.unregister()" class="btn btn-danger btn-block">Unregister</a>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
