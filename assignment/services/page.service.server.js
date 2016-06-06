@@ -70,7 +70,7 @@ module.exports = function(app) {
 	function deletePage(req, res){
 		var pId = req.params.pageId;
 		for (var i in pages) {
-			if (pages[i]._id === pageId) {
+			if (pages[i]._id === pId) {
 				pages.splice(i, 1);
 				// Send success code
 				res.sendStatus(200);
