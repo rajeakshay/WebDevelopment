@@ -21,11 +21,16 @@ module.exports = function(app) {
 		{"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 	];
 
+	var multer = require('multer');
+	var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
 	app.post("/api/page/:pageId/widget", createWidget);
 	app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 	app.get("/api/widget/:widgetId", findWidgetById);
 	app.put("/api/widget/:widgetId", updateWidget);
 	app.delete("/api/widget/:widgetId", deleteWidget);
+	app.post ("/api/upload", upload.single('myFile'), uploadImage);
+	app.get("/api/flickr", getFlickrKey);
 
 	function createWidget(req, res){
 		var pId = req.params.pageId;
@@ -75,11 +80,50 @@ module.exports = function(app) {
 		for(var i in widgets){
 			if(widgets[i]._id === wId){
 				widgets.splice(i, 1);
-				res.send(200);
+				res.sendStatus(200);
 				return;
 			}
 		}
-		res.send(400);
+		res.sendStatus(400);
+	}
+
+	function uploadImage(req, res) {
+		var widgetId = req.body.widgetId;
+		var pageId = req.body.pageId;
+		var userId = req.body.userId;
+		var websiteId = req.body.userId;
+
+		var width = req.body.width;
+		var myFile = req.file;
+
+		if(myFile) {
+			var originalname = myFile.originalname; // file name on user's computer
+			var filename = myFile.filename;     // new file name in upload folder
+			var path = myFile.path;         // full path of uploaded file
+			var destination = myFile.destination;  // folder where file is saved to
+			var size = myFile.size;
+			var mimetype = myFile.mimetype;
+
+			for (var i in widgets) {
+				if (widgets[i]._id === widgetId) {
+					widgets[i].url = "/uploads/" + filename;
+					widgets[i].width = width;
+				}
+			}
+			res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
+
+		} else {
+			res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
+		}
+	}
+
+	function getFlickrKey(req, res){
+		// Populate flickrKey with your API key for Flickr Photo Search to work on your local machine
+		var flickrKey = "";
+		if(process.env.FLICKR_API_KEY) {
+			flickrKey =  process.env.FLICKR_API_KEY; // Openshift server environment variable
+		}
+		res.send(flickrKey);
 	}
 };
 

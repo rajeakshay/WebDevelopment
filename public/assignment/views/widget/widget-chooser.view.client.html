@@ -10,9 +10,12 @@
 	</div>
 </nav>
 <div class="container">
+	<div ng-show="model.error" class="alert alert-danger">
+		{{model.error}}
+	</div>
 	<ul class="list-group">
 		<li class="list-group-item borderless">
-			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myheader">
+			<a ng-click="model.addWidget('HEADER')" href="">
 				Header
 			</a>
 		</li>
@@ -42,13 +45,13 @@
 			</a>
 		</li>
 		<li class="list-group-item borderless">
-			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myimage">
+			<a ng-click="model.addWidget('IMAGE')" href="">
 				Image
 			</a>
 		</li>
 		<li class="list-group-item borderless">
-			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/myyoutube">
-				YouTube
+			<a ng-click="model.addWidget('YOUTUBE')" href="">
+				Youtube
 			</a>
 		</li>
 		<li class="list-group-item borderless">

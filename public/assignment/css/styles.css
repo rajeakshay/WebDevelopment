@@ -44,6 +44,9 @@ Custom CSS styles
 	opacity: 0.8;
 	z-index: 1;
 }
+.img-beautify{
+	padding: 3px;
+}
 div.footer-left a{
 	padding-right: 15px;
 }
