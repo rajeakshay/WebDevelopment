@@ -20,7 +20,11 @@ MongoDB Community Edition version: `v3.2.6`
         git remote add openshift ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git
 
 4. By default, `nodejs` cartridge will be updated with **Node.js version 4.4.4**. To specify another version of Node.js, edit the **.openshift/markers/NODEJS_VERSION** file. Commit any changes using `git commit -a -m "<YOUR MESSAGE>"`. 
-5. For the first time, force push the code from your local repository to the application's Openshift Git repository.
+5. For Flickr Image Search to work, you will need to set custom environment variable `FLICKR_API_KEY` with the `rhc` command line tool:
+
+        rhc env set FLICKR_API_KEY=<Paste your Flickr API Key here> -a <Paste your appName here> 
+
+6. For the first time, force push the code from your local repository to the application's Openshift Git repository.
 
         git push openshift master -f
 
@@ -37,7 +41,7 @@ MongoDB Community Edition version: `v3.2.6`
         remote: Deployment completed with status: success
         ....
 
-6. Open `appName-yourUserName.rhcloud.com` in a browser and check if the project/application is working correctly.
+7. Open `appName-yourUserName.rhcloud.com` in a browser and check if the project/application is working correctly.
 
 # Developing and testing locally
 1. Install **Node.js v4.4.4 LTS** or your desired Node.js version and **latest** version of **MongoDB Community Edition**. For best results, use the same version of Node.js and MongoDB that you have configured on Openshift. Verify your installation using following commands-
@@ -57,9 +61,10 @@ MongoDB Community Edition version: `v3.2.6`
         git clone https://github.com/rajeakshay/raje-akshay-web-dev.git
 
 4. Navigate to the project directory `raje-akshay-web-dev` and install required `node` modules using command `npm install`.
-5. From inside the project directory, run the server using command `node server.js`.
-6. Open `http://localhost:3000` in your browser and test the application.  
-7. To modify code in an IDE, first set a run configuration stating `node` interpreter and the start up script as `server.js`. Follow your particular IDE's documentation for step-by-step instructions on how to specify run configurations for Node.js projects.
+5. To get Flickr Image Search working on your local machine, set variable `flickrKey` in `getFlickrKey` function of `widget.service.server.js` with your own Flickr API Key.
+6. From inside the project directory, run the server using command `node server.js`.
+7. Open `http://localhost:3000` in your browser and test the application.  
+8. To modify code in an IDE, first set a run configuration stating `node` interpreter and the start up script as `server.js`. Follow your particular IDE's documentation for step-by-step instructions on how to specify run configurations for Node.js projects.
 
 # Contributing
 
