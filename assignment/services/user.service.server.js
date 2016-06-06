@@ -34,7 +34,6 @@ module.exports = function(app) {
 	app.put("/api/user/:userId", updateUser);
 	app.delete("/api/user/:userId", deleteUser);
 
-	// Handle POST call to register new users
 	function createUser(req, res) {
 		var user = req.body;
 		user._id = (new Date()).getTime().toString();

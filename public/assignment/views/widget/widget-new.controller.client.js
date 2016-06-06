@@ -64,16 +64,19 @@
 				vm.error = "Some fields are required. Check " + vm.myerror;
 			}
 			else{
-				var anotherFlag = WidgetService.createWidget(vm.pageId, vm.widget);
-				if (anotherFlag) {
-					$location.url("/user/" + vm.userId +
-						"/website/" + vm.websiteId +
-						"/page/" + vm.pageId +
-						"/widget");
-				}
-				else {
-					vm.error = "Widget could not be created.";
-				}
+				WidgetService
+					.createWidget(vm.pageId, vm.widget)
+					.then(
+						function(response){
+							$location.url("/user/" + vm.userId +
+								"/website/" + vm.websiteId +
+								"/page/" + vm.pageId +
+								"/widget");
+						},
+						function(error){
+							vm.error = "Widget could not be created.";
+						}
+					);
 			}
 		};
 

@@ -14,12 +14,16 @@
 					name: name,
 					description: description
 				};
-				var newWebsite = WebsiteService.createWebsite(vm.userId, newSite);
-				if (newWebsite) {
-					$location.url("/user/" + vm.userId + "/website");
-				} else {
-					vm.error = "Unable to create website";
-				}
+				WebsiteService
+					.createWebsite(vm.userId, newSite)
+					.then(
+						function(response){
+							$location.url("/user/" + vm.userId + "/website");
+						},
+						function(error){
+							vm.error = "Unable to create website";
+						}
+					);
 			}
 		}
 	}

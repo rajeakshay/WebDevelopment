@@ -9,7 +9,11 @@
 		vm.websiteId = $routeParams.wid;
 
 		function init() {
-			vm.website = angular.copy(WebsiteService.findWebsiteById(vm.websiteId));
+			WebsiteService
+				.findWebsiteById(vm.websiteId)
+				.then(function(response){
+					vm.website = angular.copy(response.data);
+				});
 		}
 		init();
 
@@ -18,22 +22,30 @@
 				vm.error = "Cannot update website!";
 			}
 			else{
-				var flag = WebsiteService.updateWebsite(updatedWebsite._id, updatedWebsite);
-				if(flag){
-					$location.url("/user/"+vm.userId+"/website");
-				}else{
-					vm.error = "Cannot update Website!";
-				}
+				WebsiteService
+					.updateWebsite(updatedWebsite._id, updatedWebsite)
+					.then(
+						function(response){
+							$location.url("/user/"+vm.userId+"/website");
+						},
+						function(error){
+							vm.error = "Cannot update Website!";
+						}
+					);
 			}
 		};
 
 		vm.deleteWebsite = function deleteWebsite(websiteId){
-			var flag = WebsiteService.deleteWebsite(websiteId);
-			if(flag){
-				$location.url("/user/"+vm.userId+"/website");
-			}else{
-				vm.error = "Unable to delete!";
-			}
+			WebsiteService
+				.deleteWebsite(websiteId)
+				.then(
+					function(response){
+						$location.url("/user/"+vm.userId+"/website");
+					},
+					function(error){
+						vm.error = "Unable to delete!";
+					}
+				);
 		};
 	}
 })();

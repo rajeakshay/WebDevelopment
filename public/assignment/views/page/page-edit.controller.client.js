@@ -10,7 +10,11 @@
 		vm.pageId = $routeParams.pid;
 
 		function init() {
-			vm.page = angular.copy(PageService.findPageById(vm.pageId));
+			PageService
+				.findPageById(vm.pageId)
+				.then(function(response){
+					vm.page = angular.copy(response.data);
+				});
 		}
 		init();
 
@@ -19,22 +23,30 @@
 				vm.error = "Check the page name and title.";
 			}
 			else {
-				var flag = PageService.updatePage(vm.pageId, vm.page);
-				if (flag) {
-					$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-				} else {
-					vm.error = "Failed to update page.";
-				}
+				PageService
+					.updatePage(vm.pageId, vm.page)
+					.then(
+						function(response){
+							$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+						},
+						function(error){
+							vm.error = "Failed to update page.";
+						}
+					);
 			}
 		};
 
 		vm.deletePage = function deletePage() {
-			var flag = PageService.deletePage(vm.pageId);
-			if(flag) {
-				$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-			} else {
-				vm.error = "Failed to delete page.";
-			}
+			PageService
+				.deletePage(vm.pageId)
+				.then(
+					function(response){
+						$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+					},
+					function(error){
+						vm.error = "Failed to delete page.";
+					}
+				);
 		}
 	}
 })();

@@ -10,7 +10,11 @@
 		vm.websiteId = $routeParams.wid;
 
 		function init() {
-			vm.widgets = angular.copy(WidgetService.findWidgetsByPageId(vm.pageId));
+			WidgetService
+				.findWidgetsByPageId(vm.pageId)
+				.then(function(response){
+					vm.widgets = angular.copy(response.data);
+				});
 		}
 		init();
 
