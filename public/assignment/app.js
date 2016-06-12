@@ -2,5 +2,5 @@
 * Declare a new Angular app called WebAppMaker
 * */
 (function(){
-	angular.module("WebAppMaker", ["ngRoute"]);
+	angular.module("WebAppMaker", ["ngRoute", "textAngular"]);
 })();

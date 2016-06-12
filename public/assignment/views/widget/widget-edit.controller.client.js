@@ -29,6 +29,9 @@
 			else if(widget.widgetType === "IMAGE"){
 				updateImage(widget);
 			}
+			else if(widget.widgetType === "HTMLW"){
+				updateHtml(widget);
+			}
 			else{
 				updateYoutube(widget);
 			}
@@ -42,6 +45,21 @@
 				if(!widget.size){
 					widget.size = 1;
 				}
+				WidgetService
+					.updateWidget(vm.widgetId, widget)
+					.then(function (response) {
+						$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+					}, function (err) {
+						vm.error = "Widget could not be updated.";
+					});
+			}
+		}
+
+		function updateHtml(widget){
+			if (!widget.text){
+				vm.error = "Text field left blank.";
+			}
+			else{
 				WidgetService
 					.updateWidget(vm.widgetId, widget)
 					.then(function (response) {

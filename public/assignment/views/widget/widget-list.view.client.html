@@ -30,11 +30,12 @@
 				<h5 ng-switch-when="5">{{widget.text}}</h5>
 				<h6 ng-switch-when="6">{{widget.text}}</h6>
 			</div>
-			<div ng-switch-when="HTML">
+			<div ng-switch-when="HTMLW">
 				<div ng-bind-html="model.getSafeHtml(widget)"></div>
 			</div>
-			<div ng-switch-when="IMAGE">
+			<div ng-switch-when="IMAGE" class="image-widget">
 				<img class="img-responsive" ng-src="{{widget.url}}" width="{{widget.width}}"/>
+				<span ng-if="widget.text">{{widget.text}}</span>
 			</div>
 			<div ng-switch-when="YOUTUBE" class="youtube-widget">
 				<iframe ng-src="{{model.getSafeUrl(widget)}}"
@@ -43,7 +44,7 @@
 				        allowfullscreen></iframe>
 			</div>
 			<div ng-switch-default>
-				Unable to render widget {{widget}}
+				Unable to render widget properly - {{widget}}
 			</div>
 		</div>
 	</div>
