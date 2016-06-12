@@ -69,8 +69,11 @@ Custom CSS styles
 	font-size: small;
 	margin-top: 3px;
 }
-#widget-html .btn-group{
+#text-ng-toolbar .btn-group{
 	padding-bottom: 5px;
+}
+.checkbox-with-margins{
+	margin-left: 10px!important;
 }
 div.footer-left a{
 	padding-right: 15px;

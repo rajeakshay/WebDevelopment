@@ -32,6 +32,9 @@
 			else if(widget.widgetType === "HTMLW"){
 				updateHtml(widget);
 			}
+			else if(widget.widgetType === "TEXT"){
+				updateText(widget);
+			}
 			else{
 				updateYoutube(widget);
 			}
@@ -58,6 +61,21 @@
 		function updateHtml(widget){
 			if (!widget.text){
 				vm.error = "Text field left blank.";
+			}
+			else{
+				WidgetService
+					.updateWidget(vm.widgetId, widget)
+					.then(function (response) {
+						$location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+					}, function (err) {
+						vm.error = "Widget could not be updated.";
+					});
+			}
+		}
+
+		function updateText(widget){
+			if(!widget.rows && !widget.formatted){
+				vm.error = "No. of rows and formatted option are required.";
 			}
 			else{
 				WidgetService
