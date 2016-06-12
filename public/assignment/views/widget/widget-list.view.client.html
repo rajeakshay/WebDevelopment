@@ -36,10 +36,9 @@
 			<div ng-switch-when="IMAGE">
 				<img class="img-responsive" ng-src="{{widget.url}}" width="{{widget.width}}"/>
 			</div>
-			<div ng-switch-when="YOUTUBE">
+			<div ng-switch-when="YOUTUBE" class="youtube-widget">
 				<iframe ng-src="{{model.getSafeUrl(widget)}}"
 				        width="{{widget.width}}"
-				        height="100%"
 				        frameborder="0"
 				        allowfullscreen></iframe>
 			</div>
