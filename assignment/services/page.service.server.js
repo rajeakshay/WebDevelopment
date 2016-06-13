@@ -1,11 +1,6 @@
-module.exports = function(app) {
-	// Initial list of pages
-	var pages =
-		[
-			{"_id": "321", "name": "Post 1", "websiteId": "456"},
-			{"_id": "432", "name": "Post 2", "websiteId": "456"},
-			{"_id": "543", "name": "Post 3", "websiteId": "456"}
-		];
+module.exports = function(app, models) {
+	var pageModel = models.pageModel;
+	var websiteModel = models.websiteModel;
 
 	app.post("/api/website/:websiteId/page", createPage);
 	app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
@@ -16,68 +11,100 @@ module.exports = function(app) {
 	function createPage(req, res){
 		var wId = req.params.websiteId;
 		var page = req.body;
-		for(var i in pages){
-			if(pages[i].websiteId === wId && pages[i].name === page.name){
-				// Send error as page already exists
-				res.sendStatus(400);
-				return;
-			}
-		}
-		// Create a new page only if does not exist
-		page._id = (new Date()).getTime().toString();
-		pages.push(page);
-		res.send(page);
+		pageModel
+			.createPage(wId, page)
+			.then(function(page){
+				res.json(page);
+				return page;
+			}, function (error){
+				res.sendStatus(404);
+			}).then(function (page){
+			pushPagesForWebsite(websiteId, page._id);
+		}, function (error){
+			console.log("Error in creating page");
+		});
+	}
+
+	function pushPagesForWebsite(websiteId, pageId){
+		websiteModel
+			.findWebsiteById(websiteId)
+			.then(function (website){
+				website.pages.push(pageId);
+				website.save();
+			}, function (error){
+				console.log("Error finding website.");
+			});
 	}
 
 	function findAllPagesForWebsite(req, res){
 		var wId = req.params.websiteId;
-		var results = [];
-		for (var i in pages) {
-			if (pages[i].websiteId === wId) {
-				results.push(pages[i]);
-			}
-		}
-		res.json(results);
+		pageModel
+			.findAllPagesForWebsite(wId)
+			.then(function (pages){
+				res.json(pages);
+			}, function(error){
+				res.sendStatus(404);
+			});
 	}
 
 	function findPageById(req, res){
 		var pId = req.params.pageId;
-		for(var i in pages) {
-			if(pages[i]._id === pId) {
-				res.send(pages[i]);
-				return;
-			}
-		}
-		res.send({});
+		pageModel
+			.findPageById(pId)
+			.then(function (page){
+				res.json(page);
+			}, function (error){
+				res.sendStatus(404);
+			});
 	}
 
 	function updatePage(req, res){
 		var pId = req.params.pageId;
 		var newPage = req.body;
-		for(var i in pages){
-			if(pages[i]._id === pId){
-				pages[i].name = newPage.name;
-				pages[i].title = newPage.title;
-				// Send success code
+		pageModel
+			.updatePage(pId, newPage)
+			.then(function (stats){
 				res.sendStatus(200);
-				return;
-			}
-		}
-		// Invalid page id
-		res.sendStatus(400);
+			}, function (error){
+				res.sendStatus(404);
+			});
 	}
 
 	function deletePage(req, res){
 		var pId = req.params.pageId;
-		for (var i in pages) {
-			if (pages[i]._id === pId) {
-				pages.splice(i, 1);
-				// Send success code
-				res.sendStatus(200);
-				return;
-			}
-		}
-		// Invalid page id
-		res.sendStatus(400);
+		pageModel
+			.findPageById(pId)
+			.then(function (page){
+				removePageIdFromWebsites(page.websiteId, pId);
+				return pId;
+			}, function (error){
+				console.log("deletePage error!");
+			}).then(function (pgId){
+			pageModel
+				.deletePage(pgId)
+				.then(function (stats){
+					res.sendStatus(200);
+					return pgId;
+				}, function (error){
+					res.sendStatus(404);
+				});
+		});
+	}
+
+	function removePageIdFromWebsites(websiteId, pageId){
+		websiteModel
+			.findWebsiteById(websiteId)
+			.then(function (website){
+				var idx = website.pages.indexOf(pageId);
+				if(idx > -1){
+					website.pages.splice(idx,1 );
+					website.save();
+				}
+				else{
+					console.log("Index not found");
+				}
+			}, function (error){
+				console.log("Error in removing pageId from websites");
+			});
 	}
 };

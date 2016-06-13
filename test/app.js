@@ -8,7 +8,7 @@ module.exports = function(app)
 
     // Openshift environment variable MONGODB_URL is set by the custom cartridge for
     // latest version of MongoDB (3.2.6).
-    // See: https://github.com/rajeakshay/openshift-cartridge-mongodb/tree/mongo3.2.6
+    // See: https://github.com/icflorescu/openshift-cartridge-mongodb
     if(process.env.MONGODB_URL) {
         connectionString =  process.env.MONGODB_URL + process.env.OPENSHIFT_APP_NAME;
     }

@@ -16,7 +16,7 @@
 					.then(function(response){
 						var currentUser = response.data;
 						// Login only if a user is found
-						if (currentUser._id) {
+						if (currentUser && currentUser._id) {
 							// Redirect to the user's profile
 							$location.url("/user/" + currentUser._id);
 						} else {

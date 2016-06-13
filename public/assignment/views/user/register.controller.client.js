@@ -25,7 +25,7 @@
 					.createUser(user)
 					.then(function(response){
 						var newUser = response.data;
-						if(newUser) {
+						if(newUser && newUser._id) {
 							$location.url("/user/"+ newUser._id);
 						}
 					});

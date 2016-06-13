@@ -13,8 +13,8 @@
 		</div>
 	</div>
 </nav>
-<div class="container" id="isSortable">
-	<div ng-repeat="widget in model.widgets">
+<div class="container" wam-sortable wam-callback="model.sort(start, end)">
+	<div ng-repeat="widget in model.widgets | orderBy : 'order'">
 		<div class="widget-tool">
 			<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
 				<span class="glyphicon glyphicon-cog right-separator"></span>

@@ -1,30 +1,12 @@
-module.exports = function(app) {
-	// Initialize a list of widgets
-	var widgets = [
-		{"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-		{"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-		{
-			"_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-			"url": "http://lorempixel.com/400/200/"
-		},
-		{
-			"_id": "456",
-			"widgetType": "HTML",
-			"pageId": "321",
-			"text": '<p class="first-text">Investing in undersea internet cables has been a <a href="http://gizmodo.com/why-more-technology-giants-are-paying-to-lay-their-own-1703904291">big part of data strategy </a>plans for tech giants in recent years. Now Microsoft and Facebook are teaming up for the mother of all cables: A 4,100-mile monster that can move 160 Tbps, which will make it the highest-capacity cable on Earth. The cable even has a name, MAREA, and it will break ground (break waves?) later this year. Hopefully it can handle all your selfies.</p>'
-		},
-		{"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-		{
-			"_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-			"url": "https://youtu.be/AM2Ivdi9c4E"
-		},
-		{"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-	];
+module.exports = function(app, models) {
+	var widgetModel = models.widgetModel;
+	var pageModel = models.pageModel;
 
 	var multer = require('multer');
 	var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
 	app.post("/api/page/:pageId/widget", createWidget);
+	app.put("/api/page/:pageId/widget", reorderWidgets);
 	app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 	app.get("/api/widget/:widgetId", findWidgetById);
 	app.put("/api/widget/:widgetId", updateWidget);
@@ -33,58 +15,120 @@ module.exports = function(app) {
 	app.get("/api/flickr", getFlickrKey);
 
 	function createWidget(req, res){
-		var pId = req.params.pageId;
-		var widget = req.body;
-		widget._id = (new Date()).getTime().toString();
-		widgets.push(widget);
-		res.send(widget);
+		var pageId = req.params.pageId;
+		var newWidget = req.body;
+		widgetModel
+			.findHighestOrder(pageId)
+			.then(function (doc){
+				var orderX = -1;
+				if(doc && doc.order){
+					orderX = doc.order + 1;
+				}
+				else{
+					orderX = 1;
+				}
+				newWidget.order = orderX;
+				return orderX;
+			}, function (err){
+				res.sendStatus(404);
+			}).then(function (number){
+			widgetModel
+				.createWidget(pageId, newWidget)
+				.then(function (widget){
+					res.json(widget);
+					return widget;
+				}, function (error){
+					res.statusCode(404).send(error);
+				}).then(function (widget){
+				pushWidgetsInPage(pageId, widget._id);
+			}, function (error){
+				console.log("Error creating widget.");
+			});
+		});
+	}
+
+	function pushWidgetsInPage(pageId, widgetId){
+		pageModel
+			.findPageById(pageId)
+			.then(function (page){
+				page.widgets.push(widgetId);
+				page.save();
+			}, function (error){
+				console.log("Error in pushing widgets to page.");
+			});
 	}
 
 	function findAllWidgetsForPage(req, res){
-		var pId = req.params.pageId;
-		var results = [];
-		for (var i in widgets){
-			if(widgets[i].pageId === pId){
-				results.push(widgets[i]);
-			}
-		}
-		res.json(results);
+		var pageId = req.params.pageId;
+		widgetModel
+			.findAllWidgetsForPage(pageId)
+			.then(function (widgets){
+				res.json(widgets);
+			}, function (error){
+				console.log("Error finding widgets for page.");
+			});
 	}
 
 	function findWidgetById(req, res){
-		var wId = req.params.widgetId;
-		for(var i in widgets){
-			if(widgets[i]._id === wId){
-				res.send(widgets[i]);
-				return;
-			}
-		}
-		res.send({});
+		var widgetId = req.params.widgetId;
+		widgetModel
+			.findWidgetById(widgetId)
+			.then(function (widget) {
+				res.json(widget);
+			}, function (error){
+				res.sendStatus(404);
+			});
 	}
 
 	function updateWidget(req, res){
-		var wId = req.params.widgetId;
+		var widgetId = req.params.widgetId;
 		var newWidget = req.body;
-		for(var i in widgets){
-			if(widgets[i]._id === wId){
-				widgets[i] = newWidget;
-				res.sendStatus(200);
-				return;
-			}
-		}
-		res.sendStatus(400);
+		widgetModel
+			.updateWidget(widgetId, newWidget)
+			.then(function(stats){
+				newWidget._id = widgetId;
+				res.json(newWidget);
+			}, function(error){
+				res.sendStatus(404);
+			});
 	}
 
 	function deleteWidget(req, res){
-		var wId = req.params.widgetId;
-		for(var i in widgets){
-			if(widgets[i]._id === wId){
-				widgets.splice(i, 1);
-				res.sendStatus(200);
-				return;
-			}
-		}
-		res.sendStatus(400);
+		var widgetId = req.params.widgetId;
+		widgetModel
+			.findWidgetById(widgetId)
+			.then(function (widget){
+				removeWidgetIdFromPages(widget.pageId, widgetId);
+				return widgetId;
+			}, function (error){
+				console.log("Error deleting widget");
+			}).then(function (widgetId){
+			widgetModel
+				.deleteWidget(widgetId)
+				.then(function (stats) {
+					res.sendStatus(200);
+					return widgetId;
+				} , function (error) {
+					res.sendStatus(404);
+				});
+		});
+	}
+
+	function removeWidgetIdFromPages(pageId, widgetId){
+		pageModel
+			.findPageById(pageId)
+			.then(function (page){
+				var idx = page.widgets.indexOf(widgetId);
+				if(idx > -1){
+					page.widgets.splice(idx,1);
+					page.save();
+				}
+				else{
+					console.log("Index not found.");
+				}
+			}, function (error){
+				console.log("Error removing widget from page");
+			});
 	}
 
 	function uploadImage(req, res) {
@@ -104,17 +148,70 @@ module.exports = function(app) {
 			var size = myFile.size;
 			var mimetype = myFile.mimetype;
 
-			for (var i in widgets) {
-				if (widgets[i]._id === widgetId) {
-					widgets[i].url = "/uploads/" + filename;
-					widgets[i].width = width;
-				}
+			var newWidget = req.body;
+			if(width == ''){
+				width = "100%";
 			}
-			res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
+			newWidget.width = width;
+			newWidget.name = req.body.name;
+			newWidget.text = req.body.text;
+			newWidget.pageId = pageId.toString();
+			newWidget.widgetType = "IMAGE";
+			newWidget.url = "/uploads/" + filename;
 
-		} else {
+			if(newWidget._id){
+				widgetModel
+					.updateWidget(newWidget._id, newWidget)
+					.then(function(stats){
+						res.sendStatus(200);
+					}, function(error){
+						res.sendStatus(404);
+					});
+				res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + newWidget._id);
+			}
+			else{
+				delete newWidget._id;
+				widgetModel
+					.findHighestOrder(pageId)
+					.then(function (doc){
+						var orderX = -1;
+						if(doc && doc.order){
+							orderX = doc.order + 1;
+						}
+						else{
+							orderX = 1;
+						}
+						newWidget.order = orderX;
+						return orderX;
+					}, function (err){
+						res.sendStatus(404);
+					})
+					.then(function(number) {
+					widgetModel
+						.createWidget(newWidget.pageId, newWidget)
+						.then(function (widget) {
+							newWidget._id = widget._id;
+							res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widget._id);
+						}, function (error) {
+							console.log("Error creating widget.");
+						});
+				});
+			}
+		}
+		else {
 			res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
 		}
+	}
+
+	function reorderWidgets(req, res){
+		var pageId = req.params.pageId;
+		var start = req.query.start;
+		var end   = req.query.end;
+		widgetModel
+			.reorderWidgets(pageId, start, end)
+			.then(function(widgets){
+				res.sendStatus(200);
+			});
 	}
 
 	function getFlickrKey(req, res){
