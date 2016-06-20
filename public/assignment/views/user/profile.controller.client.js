@@ -3,12 +3,12 @@
 		.module("WebAppMaker")
 		.controller("ProfileController", ProfileController);
 
-	function ProfileController($routeParams, $location,  UserService) {
+	function ProfileController($routeParams, $location, $rootScope, UserService) {
 		var vm = this;
 		vm.updateUser = updateUser;
 		vm.unregister = unregister;
-
-		vm.userId = $routeParams.uid;
+		vm.logout = logout;
+		vm.userId = $rootScope.currentUser._id;
 
 		function init(){
 			UserService
@@ -44,12 +44,24 @@
 					function(){
 						// Take the user to login page on successful deletion
 						$location.url("/login");
+						$rootScope.currentUser = null;
 					},
 					function(){
 						// Display failure message
 						vm.deleteError = "Error! ";
 					}
 				);
+		}
+
+		// Facilitate user logout
+		function logout(){
+			UserService
+				.logout()
+				.then(
+					function (response){
+						$rootScope.currentUser = null;
+						$location.url("/");
+					});
 		}
 	}
 })();

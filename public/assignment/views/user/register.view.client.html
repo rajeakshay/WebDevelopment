@@ -1,13 +1,31 @@
 <div class="container">
 	<h1>Register</h1>
-	<div ng-if="model.error" class="alert alert-danger alert-dismissible">
+	<div ng-show="model.error"
+	     class="alert alert-danger alert-dismissible">
 		{{model.error}}
 	</div>
-	<form>
-		<input ng-model="username" type="text" class="form-control" placeholder="Username"/>
-		<input ng-model="password" type="password" class="form-control" placeholder="Password"/>
-		<input ng-model="verifyPassword" type="password" class="form-control" placeholder="Verify Password"/>
-		<a ng-click="model.createUser(username, password, verifyPassword)" class="btn btn-primary btn-block">Register</a>
-		<a ng-click="model.cancel()" class="btn btn-danger btn-block">Cancel</a>
+	<form name="myForm" novalidate>
+		<input ng-model="username" name="username" type="text"
+		       class="form-control" placeholder="Username" required=""
+		       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+		<span ng-show="myForm.$submitted && myForm.username.$error.required" class="help-block">
+			Username is required
+		</span>
+		<input ng-model="password" name="password" type="password"
+		       class="form-control" placeholder="Password" required=""/>
+		<span ng-show="myForm.$submitted && myForm.password.$error.required" class="help-block">
+            Password is required
+		</span>
+		<input ng-model="verifyPassword" name="verifyPassword" type="password"
+		       class="form-control" placeholder="Verify Password" required=""/>
+		<span ng-show="myForm.$submitted && myForm.verifyPassword.$error.required" class="help-block">
+			Verify Password is required
+		</span>
+		<span ng-show="password != verifyPassword" class="help-block">
+           Passwords do not match.
+        </span>
+		<button ng-click="myForm.$valid && model.createUser(username, password, verifyPassword)"
+		        class="btn btn-primary btn-block">Register</button>
+		<button ng-click="model.cancel()" class="btn btn-danger btn-block">Cancel</button>
 	</form>
 </div>

@@ -7,7 +7,7 @@
 		</div>
 		<a class="navbar-brand left-padding-adjusted" href="">Edit Page</a>
 		<div class="stick-to-right">
-			<a ng-click="model.updatePage()" class="navbar-link">
+			<a ng-click="myForm.$valid && model.updatePage()" class="navbar-link">
 				<span class="glyphicon glyphicon-ok"></span>
 			</a>
 		</div>
@@ -17,24 +17,28 @@
 	<div ng-if="model.error" class="alert alert-danger">
 		{{model.error}}
 	</div>
-	<form>
+	<form name="myForm" novalidate>
 		<div class="form-group">
-			<label for="name">Name</label>
+			<label for="page-name">Name</label>
 			<input ng-model="model.page.name"
 			       type="text"
+			       name="name"
 			       class="form-control"
-			       id="name"
+			       id="page-name"
 			       placeholder="Page Name"
-			       value="Page Name"/>
+			       required=""/>
 		</div>
+		<span class="help-block"
+		      ng-show="myForm.name.$error.required && myForm.name.$dirty">
+			Page Name is required.
+        </span>
 		<div class="form-group">
 			<label for="title">Title</label>
 			<input ng-model="model.page.title"
 			       type="text"
 			       class="form-control"
 			       id="title"
-			       placeholder="Page Title"
-			       value="Page Title"/>
+			       placeholder="Page Title"/>
 		</div>
 	</form>
 	<a class="btn btn-danger btn-block" ng-click="model.deletePage()">Delete</a>

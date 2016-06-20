@@ -75,6 +75,9 @@ Custom CSS styles
 .checkbox-with-margins{
 	margin-left: 10px!important;
 }
+.help-block {
+	color: red;
+}
 div.footer-left a{
 	padding-right: 15px;
 }

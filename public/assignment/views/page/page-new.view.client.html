@@ -17,15 +17,21 @@
 	<div ng-if="model.error" class="alert alert-danger">
 		{{model.error}}
 	</div>
-	<form>
+	<form name="myForm" novalidate>
 		<div class="form-group">
-			<label for="name">Name</label>
+			<label for="page-name">Name</label>
 			<input ng-model="model.page.name"
 			       type="text"
+			       name="name"
 			       class="form-control"
-			       id="name"
-			       placeholder="Page Name"/>
+			       id="page-name"
+			       placeholder="Page Name"
+			       required=""/>
 		</div>
+		<span class="help-block"
+		      ng-show = "(myForm.name.$invalid && !myForm.name.$pristine)">
+            Page Name is required.
+        </span>
 		<div class="form-group">
 			<label for="title">Title</label>
 			<input ng-model="model.page.title"

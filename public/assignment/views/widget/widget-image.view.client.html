@@ -1,13 +1,19 @@
 <div class="container">
-	<form>
+	<form name="myForm" novalidate>
 		<div class="form-group">
 			<label for="widget-name">Name</label>
 			<input ng-model="model.widget.name"
 			       type="text"
+			       name="name"
 			       class="form-control"
 			       id="widget-name"
-			       placeholder="Image Name">
+			       placeholder="Image Name"
+			       required="">
 		</div>
+		<span class="help-block"
+		      ng-show="myForm.name.$error.required && myForm.name.$dirty">
+			Name is required.
+        </span>
 		<div class="form-group">
 			<label for="widget-text">Caption</label>
 			<input ng-model="model.widget.text"

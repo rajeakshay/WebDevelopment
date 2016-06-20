@@ -11,7 +11,7 @@
 
 		function createPage() {
 			if (!vm.page || !vm.page.name || !vm.page.title) {
-				vm.error = "Check the page name or title.";
+				vm.error = "Page name and title are required.";
 			}else{
 				PageService
 					.createPage(vm.websiteId, vm.page)

@@ -44,6 +44,9 @@
 			if (!widget.text){
 				vm.error = "Text field left blank.";
 			}
+			else if(!widget.name){
+				vm.error = "Name is required.";
+			}
 			else{
 				if(!widget.size){
 					widget.size = 1;
@@ -62,6 +65,9 @@
 			if (!widget.text){
 				vm.error = "Text field left blank.";
 			}
+			else if(!widget.name){
+				vm.error = "Name is required.";
+			}
 			else{
 				WidgetService
 					.updateWidget(vm.widgetId, widget)
@@ -77,6 +83,9 @@
 			if(!widget.rows && !widget.formatted){
 				vm.error = "No. of rows and formatted option are required.";
 			}
+			else if(!widget.name){
+				vm.error = "Name is required.";
+			}
 			else{
 				WidgetService
 					.updateWidget(vm.widgetId, widget)
@@ -91,6 +100,9 @@
 		function updateYoutube(widget){
 			if(!widget.url){
 				vm.error = "URL field left blank.";
+			}
+			else if(!widget.name){
+				vm.error = "Name is required.";
 			}
 			else{
 				if(!widget.width){
@@ -109,6 +121,9 @@
 		function updateImage(widget){
 			if(!widget.url){
 				vm.error = "URL field left blank.";
+			}
+			else if(!widget.name){
+				vm.error = "Name is required.";
 			}
 			else{
 				if(!widget.width){

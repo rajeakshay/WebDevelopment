@@ -19,7 +19,7 @@
 
 		vm.updateWebsite = function updateWebsite(updatedWebsite){
 			if(!updatedWebsite || !updatedWebsite.name){
-				vm.error = "Cannot update website!";
+				vm.error = "Website name is required!";
 			}
 			else{
 				WebsiteService

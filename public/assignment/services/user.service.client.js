@@ -7,7 +7,11 @@
 	function UserService($http) {
 		// Make the API available to the outside world
 		return {
+			registerUser: registerUser,
 			createUser: createUser,
+			login: login,
+			logout: logout,
+			loggedIn: loggedIn,
 			findUserById: findUserById,
 			findUserByUsername: findUserByUsername,
 			findUserByCredentials: findUserByCredentials,
@@ -16,6 +20,29 @@
 		};
 
 		// API for the UserService
+
+		function login(username, password){
+			var user = {
+				username: username,
+				password: password
+			};
+			console.log(user);
+			return $http.post("/api/login",user);
+		}
+
+		function logout(){
+			return $http.post("/api/logout");
+		}
+
+		function loggedIn(){
+			return $http.get("/api/loggedIn");
+		}
+
+		function registerUser(newUser) {
+			console.log("createUser - " + newUser.username);
+			return $http.post("/api/register", newUser);
+		}
+
 		function createUser(newUser) {
 			console.log("createUser - " + newUser.username);
 			return $http.post("/api/user", newUser);

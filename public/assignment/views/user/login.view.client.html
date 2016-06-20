@@ -1,12 +1,26 @@
 <div class="container">
-	<div ng-if="model.loginError" class="alert alert-danger alert-dismissible">
+	<div ng-show="model.loginError" class="alert alert-danger alert-dismissible">
 		{{model.loginError}}
 	</div>
 	<h1>Login</h1>
-	<form>
-		<input ng-model="username" type="text" class="form-control" placeholder="Username"/>
-		<input ng-model="password" type="password" class="form-control" placeholder="Password"/>
-		<a ng-click="model.login(username, password)" class="btn btn-primary btn-block">Login</a>
-		<a ng-click="model.register()" class="btn btn-success btn-block">Register</a>
+	<form name="myForm" novalidate>
+		<input ng-model="username"  name="username" type="text"
+		       class="form-control" placeholder="Username" required=""
+		       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+		<span ng-show="myForm.$submitted && myForm.username.$error.required" class="help-block">
+                Username is required
+        </span>
+		<input ng-model="password" name="password" type="password"
+		       class="form-control" placeholder="Password" required/>
+		<span ng-show="myForm.$submitted && myForm.password.$error.required" class="help-block">
+                Password is required
+        </span>
+		<button type="submit" ng-click="myForm.$valid && model.login(username, password)"
+		        class="btn btn-primary btn-block">Login</button>
+		<button ng-click="model.register()" class="btn btn-success btn-block">Register</button>
+		<a href="/auth/facebook" class="btn btn-primary btn-block">
+			<span class="fa fa-facebook"></span>
+			Facebook
+		</a>
 	</form>
 </div>

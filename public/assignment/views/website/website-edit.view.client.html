@@ -17,23 +17,28 @@
 	<div ng-if="model.error" class="alert alert-danger">
 		{{model.error}}
 	</div>
-	<form>
+	<form name="myForm" novalidate>
 		<div class="form-group">
-			<label for="name">Website Name</label>
+			<label for="website-name">Website Name</label>
 			<input ng-model="model.website.name"
 			       type="text"
+			       name="wname"
 			       class="form-control"
-			       id="name"
+			       id="website-name"
 			       placeholder="Website Name"
-			       value="Blogger"/>
+			       required=""/>
 		</div>
+		<span ng-show="myForm.wname.$error.required && myForm.wname.$dirty"
+		      class="help-block">
+			Website Name is required
+        </span>
 		<div class="form-group">
 			<label for="description">Website Description</label>
 			<textarea ng-model="model.website.description"
 			          rows="4"
 			          class="form-control"
 			          id="description"
-			          placeholder="Website Description">This is some random text thrown in for this mock-up to look good. Textarea serves as a nice container to write high quality content. Edit this text until you are satisfied.
+			          placeholder="Website Description">
 			</textarea>
 		</div>
 	</form>
