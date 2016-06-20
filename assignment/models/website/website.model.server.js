@@ -8,13 +8,8 @@ module.exports = function() {
 		findAllWebsitesForUser: findAllWebsitesForUser,
 		findWebsiteById: findWebsiteById,
 		deleteWebsite: deleteWebsite,
-		updateWebsite: updateWebsite,
-		checkWebsiteByIdAndName: checkWebsiteByIdAndName
+		updateWebsite: updateWebsite
 	};
-
-	function checkWebsiteByIdAndName(userId, websiteName){
-		// TODO: Validation later
-	}
 
 	function findWebsiteById(websiteId) {
 		return Website.findById(websiteId);

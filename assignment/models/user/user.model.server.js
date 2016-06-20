@@ -7,9 +7,10 @@ module.exports = function() {
 		createUser: createUser,
 		findUserById: findUserById,
 		findUserByCredentials: findUserByCredentials,
+		findUserByUsername: findUserByUsername,
+		findUserByFacebookId: findUserByFacebookId,
 		updateUser: updateUser,
-		deleteUser: deleteUser,
-		findUserByUsername: findUserByUsername
+		deleteUser: deleteUser
 	};
 
 	function updateUser(userId, user) {
@@ -38,6 +39,10 @@ module.exports = function() {
 
 	function findUserById(userId) {
 		return User.findById(userId);
+	}
+
+	function findUserByFacebookId(facebookId) {
+		return User.findOne({'facebook.id': facebookId});
 	}
 
 	function createUser(user) {

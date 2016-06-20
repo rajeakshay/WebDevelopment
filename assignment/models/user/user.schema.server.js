@@ -6,6 +6,10 @@ module.exports = function() {
 		password: String,
 		firstName: String,
 		lastName: String,
+		facebook: {
+			token: String,
+			id: String
+		},
 		dob: Date,
 		email: String,
 		phone: String,
