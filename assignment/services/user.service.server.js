@@ -15,8 +15,8 @@ module.exports = function(app, models) {
 	app.put("/api/user/:userId", updateUser);
 	app.delete("/api/user/:userId", deleteUser);
 
-	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-	app.get('/auth/facebook/callback',
+	app.get('/auth/assignment/facebook', passport.authenticate('facebook', { scope : 'email' }));
+	app.get('/auth/assignment/facebook/callback',
 		passport.authenticate('facebook', {
 			successRedirect: '/assignment/#/user',
 			failureRedirect: '/assignment/#/login'
