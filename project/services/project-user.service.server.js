@@ -1,6 +1,8 @@
-module.exports = function(app, models) {
+var bcrypt = require("bcrypt-nodejs");
+module.exports = function(app, models, securityService) {
 	var projectUserModel = models.projectUserModel;
 	var videoModel = models.videoModel;
+	var passport = securityService.getPassport();
 
 	app.post("/api/user", createUser);
 	app.get("/api/user", getAllUsers);
@@ -17,7 +19,79 @@ module.exports = function(app, models) {
 	app.delete("/api/user/:userId/favorites", removeFromFavorites);
 	app.delete("/api/user/:userId/followers", removeFromFollowers);
 	app.delete("/api/user/:userId/following", removeFromFollowing);
-	
+
+	app.get('/auth/project/google', passport.authenticate('goog-project', { scope : ['email','profile'] }));
+	app.get('/auth/project/google/callback',
+		passport.authenticate('goog-project', {
+			successRedirect: '/project/#/profile',
+			failureRedirect: '/project/#/signin'
+		}));
+
+	app.get("/api/loggedIn", loggedIn);
+	app.post("/api/signup", signup);
+	app.post("/api/signout", signout);
+	app.post("/api/signin", passport.authenticate('project'), signin);
+
+	function loggedIn(req, res) {
+		if(req.isAuthenticated()){
+			res.json(req.user);
+		} else {
+			res.send(false);
+		}
+	}
+
+	function signin(req, res){
+		var user = req.user;
+		res.json(user);
+	}
+
+	function signout(req, res) {
+		req.logout();
+		res.sendStatus(200);
+	}
+
+	function signup(req, res){
+		var email = req.body.email;
+		var password = req.body.password;
+		var firstName = req.body.firstName;
+		var lastName = req.body.lastName;
+
+		projectUserModel
+			.findUserByEmail(email)
+			.then(
+				function (user){
+					if(user){
+						res.status(400).send("Username already exist");
+					}
+					else {
+						password = bcrypt.hashSync(req.body.password);
+						return projectUserModel
+							.createUser({
+								email: username,
+								password: password,
+								firstName: firstName,
+								lastName: lastName
+							});
+					}
+				},
+				function (err){
+					res.status(400).send(err);
+				}
+			).then(
+			function (user){
+				if (user) {
+					req.login(user, function (err) {
+						if(err){
+							res.status(400).send(err);
+						} else {
+							res.json(user);
+						}
+					});
+				}
+			}
+		);
+	}
+
 	function createUser(req, res){
 		var user = req.body;
 		projectUserModel

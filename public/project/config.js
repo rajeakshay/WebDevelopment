@@ -30,19 +30,19 @@
 				controller : "ProfileController",
 				controllerAs : "model"
 			})
-			.when("/feed", {
-				templateUrl: "views/user/feed.view.client.html",
-				controller: "FeedController",
-				controllerAs: "model"
-			})
-			.when("/friends", {
-				templateUrl: "views/user/friends.view.client.html",
-				controller: "FriendsController",
+			.when("/discover", {
+				templateUrl: "views/user/discover.view.client.html",
+				controller: "DiscoverController",
 				controllerAs: "model"
 			})
 			.when("/favorites", {
 				templateUrl: "views/user/favorites.view.client.html",
 				controller: "FavoritesController",
+				controllerAs: "model"
+			})
+			.when("/network", {
+				templateUrl: "views/user/network.view.client.html",
+				controller: "NetworkController",
 				controllerAs: "model"
 			})
 			.when("/admin",{
@@ -65,23 +65,13 @@
 				controller: "FavoritesController",
 				controllerAs: "model"
 			})
-			.when("/admin/:uId/friends",{
-				templateUrl: "views/user/friends.view.client.html",
-				controller: "FriendsController",
-				controllerAs: "model"
-			})
-			.when("/video",{
-				templateUrl: "views/video/video-list.view.client.html",
-				controller: "VideoListController",
-				controllerAs: "model"
-			})
-			.when("/video/:vId",{
-				templateUrl: "views/video/video.view.client.html",
-				controller: "VideoController",
+			.when("/admin/:uId/network",{
+				templateUrl: "views/user/network.view.client.html",
+				controller: "NetworkController",
 				controllerAs: "model"
 			})
 			.otherwise({
-				redirectTo: "/"
+				redirectTo: "/signin"
 			});
 	}
 })();

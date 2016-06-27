@@ -1,9 +1,9 @@
 (function(){
 	angular
 		.module("iTube")
-		.controller("AccountController", AccountController);
+		.controller("NetworkController", NetworkController);
 
-	function AccountController($location, $rootScope, ProjectUserService){
+	function NetworkController($location, $rootScope, ProjectUserService){
 		var vm = this;
 		//TODO
 		function init(){

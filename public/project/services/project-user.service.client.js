@@ -5,6 +5,10 @@
 
 	function ProjectUserService($http){
 		return {
+			signup: signup,
+			signin: signin,
+			signout: signout,
+			loggedIn: loggedIn,
 			createUser: createUser,
 			findUserById: findUserById,
 			getAllUsers: getAllUsers,
@@ -21,6 +25,24 @@
 			updateUser: updateUser,
 			deleteUser: deleteUser
 		};
+
+		function signin(user){
+			console.log(user);
+			return $http.post("/api/signin",user);
+		}
+
+		function signout(){
+			return $http.post("/api/signout");
+		}
+
+		function loggedIn(){
+			return $http.get("/api/loggedIn");
+		}
+
+		function signup(newUser) {
+			console.log("createUser - " + newUser.email);
+			return $http.post("/api/signup", newUser);
+		}
 
 		function createUser(newUser){
 			console.log("createUser - " + newUser.email);

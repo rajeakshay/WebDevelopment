@@ -263,6 +263,14 @@ span.caret{
 
 .results-heading{
 	margin-left: 5%;
+	font-size: 18px;
+}
+.users-heading{
+	font-size: 18px;
+}
+
+.user-info{
+	padding: 0 10px;
 }
 
 .results-heading-separator{
@@ -300,4 +308,8 @@ label.radio-inline{
 
 .feature-desc p{
 	font-size: 18px;
+}
+
+#demo{
+	padding-bottom: 40px;
 }

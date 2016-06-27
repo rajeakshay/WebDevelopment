@@ -27,9 +27,10 @@
 					<a href="#/network"><span class="fa fa-users nav-icon"></span>Network</a>
 				</li>
 				<li>
-					<a href="#/discover">
+					<a href="#/discover" class="selected-link">
 						<span class="fa fa-search nav-icon"></span>
 						Discover
+						<span class="sr-only">Discover</span>
 					</a>
 				</li>
 				<li>
@@ -58,3 +59,47 @@
 		</div>
 	</div>
 </nav>
+<div class="container">
+	<div class="input-group center-content">
+		<input ng-model="keywords"
+		       ng-keypress="($event.which ==13 || $event.keyCode==13)? model.search(keywords):return"
+		       type="text"
+		       class="form-control"
+		       placeholder="Search videos">
+					<span class="input-group-btn">
+	                    <a ng-click="model.search(keywords)" class="btn btn-default" type="button">
+				            <span class="glyphicon glyphicon-search"></span>
+	                    </a>
+	                </span>
+	</div>
+	<br/>
+	<h4>Search Results</h4>
+	<hr class="results-heading-separator"/>
+	<br/>
+	<div class="row">
+		<div ng-show="!model.videoResults.length" class="col-xs-12">
+			<p class="center-content" style="font-size: 14px">Search your favorite content in the box above.</p>
+		</div>
+		<div ng-repeat="hit in model.videoResults" class="col-sm-6 col-md-3 result">
+			<div class="result-container">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+					        ng-src="{{hit.url}}" allowfullscreen>
+					</iframe>
+				</div>
+				<div class="result-info">
+					<h5 class="hit-title">{{hit.title}}</h5>
+					<h6 class="hit-author">{{hit.author}}</h6>
+					<h6 class="hit-description">{{hit.description}}</h6>
+				</div>
+				<hr class="results-heading-separator"/>
+				<h6>
+					<a href="" class="btn btn-default itube-heart">
+						<span class="fa fa-heart"></span>
+						Add to Favorite
+					</a>
+				</h6>
+			</div>
+		</div>
+	</div>
+</div>

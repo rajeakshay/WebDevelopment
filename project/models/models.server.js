@@ -1,6 +1,6 @@
-module.exports = function(db, mongoose) {
+module.exports = function(db, mongoose, projectUserModel) {
 	return {
-		projectUserModel: require("./user/project-user.model.server.js")(db, mongoose),
+		projectUserModel: projectUserModel,
 		videoModel: require("./video/video.model.server.js")(db, mongoose)
 	};
 };

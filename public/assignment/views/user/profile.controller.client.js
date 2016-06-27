@@ -43,8 +43,8 @@
 				.then(
 					function(){
 						// Take the user to login page on successful deletion
-						$location.url("/login");
 						$rootScope.currentUser = null;
+						$location.url("/login");
 					},
 					function(){
 						// Display failure message

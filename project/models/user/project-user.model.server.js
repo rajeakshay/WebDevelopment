@@ -67,18 +67,7 @@ module.exports = function(db, mongoose) {
 	}
 
 	function findAllUsers(){
-		return ProjectUser.aggregate([
-			{
-				$project: {
-					firstName: 1,
-					lastName: 1,
-					noOfFollowers: { $size: "$followers" },
-					noOfFollowing: { $size: "$following"},
-					noOfFavorites: { $size: "$favorites"},
-					dateCreated: 1
-				}
-			}
-		]);
+		return ProjectUser.find();
 	}
 
 	function findFollowersForUser(user) {

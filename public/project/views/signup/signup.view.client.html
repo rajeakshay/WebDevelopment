@@ -10,10 +10,6 @@
 		<h5 style="text-align: center;">Discover and share videos</h5>
 		<h6 style="text-align: center;">It's free, always will be.</h6>
 		<br/>
-		<a href="/auth/project/facebook" class="btn btn-primary btn-block btn-fb">
-			<span class="fa fa-facebook-official"></span>
-			Sign up with Facebook
-		</a>
 		<a href="/auth/project/google" class="btn btn-danger btn-block btn-googl">
 			<span class="fa fa-google"></span>
 			Sign up with Google
@@ -44,7 +40,7 @@
 			<input ng-model="confirmPassword" type="password"
 			       class="form-control" placeholder="Confirm Password"/>
 			<br/>
-			<button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+			<button ng-click="model.createUser(email, password, confirmPassword, firstName, lastName)" type="submit" class="btn btn-primary btn-block">Sign Up</button>
 		</form>
 		<br/>
 		<div class="text-center footer-div">
