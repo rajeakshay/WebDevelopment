@@ -1,0 +1,303 @@
+/******************
+Custom CSS styles
+*******************/
+
+/* Colors
+Youtube Red: #cd201f
+Facebook Blue: #3b5998
+Google Red: #db3236
+*/
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+
+@media (max-width: 767px){
+	.branding span{
+		font-size: 36px!important;
+	}
+
+	.branding span{
+		font-size: 48px!important;
+	}
+
+	.center-content{
+		width: 90%;
+	}
+
+	.navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
+		color: white;
+	}
+
+    .feature-desc{
+	    padding-bottom: 25px;
+    }
+}
+
+@media (min-width: 768px){
+	.center-content{
+		width: 75%;
+	}
+}
+
+@media (min-width: 992px){
+	.center-content{
+		width: 60%;
+	}
+}
+
+@media (min-width: 1200px){
+	.center-content{
+		width: 50%;
+	}
+}
+
+.align-right{
+	text-align: right;
+}
+
+.align-center{
+	text-align: center;
+}
+
+.branding-main{
+	padding-top: 0px;
+}
+
+.branding-main span{
+	font-size: 56px;
+	vertical-align: middle;
+	padding-left: 5px;
+}
+
+.branding{
+	padding-top: 20px;
+}
+
+.branding span{
+	font-size: 48px;
+	vertical-align: middle;
+	padding-left: 5px;
+	color: #444444;
+}
+
+.hr-main{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.special-separator{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	line-height:1px;
+	width: 100%;
+	border-top: 1px solid gray;
+	text-align: center;
+}
+
+div.special-separator>span{
+	z-index: 10;
+	background-color: white;
+	padding: 10px;
+}
+
+.footer-div{
+	padding-bottom: 20px;
+}
+
+.center-content{
+	margin: 0 auto;
+}
+
+.btn-fb{
+	background-color: #3b5998;
+}
+
+.btn-googl{
+	background-color: #db3236;
+}
+
+.btn-yt{
+	background-color: #cd201f;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+input.form-control{
+	margin-bottom: 10px;
+}
+
+.jumbotron{
+	background:
+			linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+			#34495e url("../img/collage.png") no-repeat center center;
+	background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+}
+
+.link-separator{
+	padding: 10px;
+	font-weight: bold;
+}
+
+.user-link{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 15px;
+	transition: all 0.4s;
+	vertical-align: middle;
+	touch-action: manipulation;
+	line-height: 1.846;
+}
+
+.user-link:hover{
+	color: #cd201f;
+}
+
+.desc{
+	font-size: larger;
+	font-weight: 400;
+}
+
+.sub-desc{
+	font-size: smaller;
+	font-weight: 400;
+}
+
+.jumbotron *{
+	color: white;
+}
+
+.col-md-4 p{
+	font-size: large;
+	text-align: justify;
+}
+
+.col-md-12 p{
+	font-size: large;
+	text-align: justify;
+}
+
+.feature-divider{
+	margin: 30px 0;
+}
+
+.navbar-inverse .navbar-brand{
+	color: white;
+}
+
+.navbar-inverse .navbar-collapse{
+	border-color: #cd201f;
+}
+
+.dropdown-menu{
+	background-color: #cd201f;
+}
+
+.dropdown-menu>li>a{
+	color: white;
+	text-transform: uppercase;
+}
+
+.dropdown-menu>li>a:hover{
+	color: white;
+	background-color: #c4302b;
+}
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus{
+	background-color: #c4302b!important;
+	border-color: #c4302b!important;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+	color: white;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.selected-link{
+	background-color: #c4302b!important;
+	border-top-color: white!important;
+	border-bottom-color: white!important;
+	font-weight: bold;
+}
+
+.v-mid{
+	vertical-align: middle;
+}
+
+span.nav-icon{
+	padding: 5px;
+}
+
+span.caret{
+	margin-left: 7px;
+}
+
+.navbar-inverse{
+	background-color: #cd201f;
+}
+
+.result{
+	padding-bottom: 5px;
+}
+
+.result-container{
+	padding-bottom: 2px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.result-info{
+	padding-left: 10px;
+}
+
+.results-heading{
+	margin-left: 5%;
+}
+
+.results-heading-separator{
+	margin: 5px 0;
+}
+
+.itube-heart-info{
+	padding-left: 10px;
+}
+
+.itube-heart, .itube-heart:hover, .itube-heart:focus, .itube-heart:active{
+	color: #cd201f;
+	margin: 5px;
+}
+
+.result-info .hit-title{
+	font-size: medium;
+}
+
+.result-info .hit-author{
+	font-size: small;
+}
+
+label.radio-inline{
+	margin-left: 20px;
+}
+
+.feature-desc img{
+	border-bottom: 1px solid lightgray;
+}
+
+.feature-desc h4{
+	margin-top: 10px;
+}
+
+.feature-desc p{
+	font-size: 18px;
+}

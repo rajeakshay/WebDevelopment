@@ -30,7 +30,8 @@ module.exports = function(app, models) {
 	var facebookConfig = {
 		clientID     : process.env.FACEBOOK_CLIENT_ID,
 		clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-		callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+		callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+		profileFields: ['id', 'name', 'email']
 	};
 
 	passport.serializeUser(serializeUser);
@@ -38,36 +39,39 @@ module.exports = function(app, models) {
 
 	passport.use(new FacebookStrategy(facebookConfig, facebookLogin));
 
-	function serializeUser(user, done) {
-		done(null, user);
+	function serializeUser(user, cb) {
+		cb(null, user);
 	}
 
-	function deserializeUser(user, done) {
+	function deserializeUser(user, cb) {
 		userModel
 			.findUserById(user._id)
 			.then(
 				function(user){
-					done(null, user);
+					cb(null, user);
 				},
 				function(err){
-					done(err, null);
+					cb(err, null);
 				}
 			);
 	}
 
-	function facebookLogin(token, refreshToken, profile, done) {
-		console.log(profile);
+	function facebookLogin(token, refreshToken, profile, cb) {
+		// console.log("===========================================");
+		// console.log(profile);
+		// console.log("===========================================");
 		userModel
 			.findUserByFacebookId(profile.id)
 			.then(
 				function(facebookUser) {
 					if(facebookUser) {
-						return done(null, facebookUser);
+						return cb(null, facebookUser);
 					} else {
 						facebookUser = {
-							username: profile.displayName.replace(/ /g,''),
-							firstName: profile.displayName.split(' ').slice(0, -1).join(' '),
-							lastName: profile.displayName.split(' ').slice(-1).join(' '),
+							username: profile.name.givenName.concat(profile.name.familyName).toLowerCase(),
+							firstName: profile.name.givenName,
+							lastName: profile.name.familyName,
+							email: profile.emails[0].value,
 							facebook: {
 								token: token,
 								id: profile.id
@@ -77,7 +81,7 @@ module.exports = function(app, models) {
 							.createUser(facebookUser)
 							.then(
 								function(user) {
-									done(null, user);
+									cb(null, user);
 								}
 							);
 					}
@@ -85,19 +89,19 @@ module.exports = function(app, models) {
 			);
 	}
 
-	function localStrategy(username, password, done) {
+	function localStrategy(username, password, cb) {
 		userModel
 			.findUserByUsername(username)
 			.then(
 				function(user) {
 					if(user && user.username === username && bcrypt.compareSync(password, user.password)) {
-						return done(null, user);
+						return cb(null, user);
 					} else {
-						return done(null, false);
+						return cb(null, false);
 					}
 				},
 				function(err) {
-					if (err) { return done(err); }
+					if (err) { return cb(err); }
 				}
 			);
 	}
@@ -117,7 +121,7 @@ module.exports = function(app, models) {
 
 	function logout(req, res) {
 		req.logout();
-		res.send(200);
+		res.sendStatus(200);
 	}
 
 	function register(req, res){

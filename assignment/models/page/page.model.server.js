@@ -1,6 +1,5 @@
-module.exports = function() {
-	var mongoose = require("mongoose");
-	var PageSchema = require("./page.schema.server.js")();
+module.exports = function(db, mongoose) {
+	var PageSchema = require("./page.schema.server.js")(mongoose);
 	var Page = mongoose.model("Page", PageSchema);
 
 	return {

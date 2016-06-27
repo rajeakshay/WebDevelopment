@@ -1,0 +1,147 @@
+<div class="jumbotron">
+	<div class="container">
+		<p class="align-right">
+			<a href="#/signin" class="user-link">Sign In</a>
+			<span class="link-separator">|</span>
+			<a href="#/signup" class="user-link">Sign Up</a>
+		</p>
+		<a href="#/">
+			<div class="text-center branding-main">
+				<img src="/project/img/YouTube_48px.png" alt="iTube Logo">
+				<span>iTube</span>
+			</div>
+		</a>
+		<p class="align-center">
+			<span class="desc">Discover and share videos</span><br/>
+			<span class="sub-desc">It's free, always will be.</span>
+		</p>
+		<br/>
+		<p class="align-center">
+			<a href="#/?scrollTo=learn-more" class="btn btn-danger btn-yt">Learn More</a>
+			<a href="#/?scrollTo=demo" class="btn btn-danger btn-yt">Try Demo</a>
+		</p>
+	</div>
+</div>
+<div class="container">
+	<div id="learn-more" class="row">
+		<div class="col-sm-4 feature-desc">
+			<img class="img-responsive" src="/project/img/Discover.png"/>
+			<h4>Discover videos</h4>
+			<p>Search videos on YouTube, on iTube public feed or in your network to discover your favorite content.</p>
+		</div>
+		<div class="col-sm-4 feature-desc">
+			<img class="img-responsive" src="/project/img/Discover.png"/>
+			<h4>Follow friends</h4>
+			<p>Find and follow your friends on iTube or follow other people with similar tastes.</p>
+		</div>
+		<div class="col-sm-4 feature-desc">
+			<img class="img-responsive" src="/project/img/Discover.png"/>
+			<h4>Share videos</h4>
+			<p>Share your favorite content with your friends and followers by adding videos to your Favorites.</p>
+		</div>
+	</div>
+	<hr class="feature-divider"/>
+	<div id="demo" class="row">
+		<div class="col-md-12">
+			<h3>Demo</h3>
+			<p>Home, Favorites and Network features are only available to registered users.</p>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button"
+						        class="navbar-toggle collapsed"
+						        data-toggle="collapse"
+						        data-target="#itube-navbar-collapse-2">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand v-mid" href="#/">
+							<span class="fa fa-youtube-play"></span>
+							iTube
+						</a>
+					</div>
+					<div class="collapse navbar-collapse" id="itube-navbar-collapse-2">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href=""><span class="fa fa-home nav-icon"></span>Home</a>
+							</li>
+							<li>
+								<a href=""><span class="fa fa-heart nav-icon"></span>Favorites</a>
+							</li>
+							<li>
+								<a href=""><span class="fa fa-users nav-icon"></span>Network</a>
+							</li>
+							<li>
+								<a href="" class="selected-link">
+									<span class="fa fa-search nav-icon"></span>
+									Discover
+									<span class="sr-only">Discover</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle"
+								   data-toggle="dropdown"
+								   role="button"
+								   aria-expanded="false">
+									<span class="fa fa-user nav-icon"></span>
+									Guest
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href=""><span class="fa fa-cog nav-icon"></span>Settings</a></li>
+									<li><a href=""><span class="fa fa-sign-out nav-icon"></span>Sign Out</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="input-group center-content">
+				<input ng-model="keywords"
+				       ng-keypress="($event.which ==13 || $event.keyCode==13)? model.search(keywords):return"
+				       type="text"
+				       class="form-control"
+				       placeholder="Search videos">
+				<span class="input-group-btn">
+                    <a ng-click="model.search(keywords)" class="btn btn-default" type="button">
+			            <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+			</div>
+			<br/>
+			<p class="results-heading">Search Results</p>
+			<hr class="results-heading-separator"/>
+			<br/>
+			<div class="row">
+				<div ng-show="!model.videoResults.length" class="col-xs-12">
+					<p class="center-content" style="font-size: 14px">Search your favorite content in the box above.</p>
+				</div>
+				<div ng-repeat="hit in model.videoResults" class="col-sm-6 col-md-3 result">
+					<div class="result-container">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item"
+							        ng-src="{{hit.url}}" allowfullscreen>
+							</iframe>
+						</div>
+						<div class="result-info">
+							<h5 class="hit-title">{{hit.title}}</h5>
+							<h6 class="hit-author">{{hit.author}}</h6>
+							<h6 class="hit-description">{{hit.description}}</h6>
+						</div>
+						<hr class="results-heading-separator"/>
+						<h6>
+							<a href="" class="btn btn-default itube-heart">
+								<span class="fa fa-heart"></span>
+								Add to Favorite
+							</a>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

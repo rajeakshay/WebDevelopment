@@ -1,6 +1,4 @@
-module.exports = function(){
-	var mongoose = require("mongoose");
-
+module.exports = function(mongoose){
 	var WidgetSchema = mongoose.Schema({
 		pageId: {type: mongoose.Schema.ObjectId, ref: "Page"},
 		widgetType: String,

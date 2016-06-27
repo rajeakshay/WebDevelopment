@@ -1,7 +1,18 @@
 {
   "name": "web-dev",
-  "version": "1.0.0",
-  "description": "Web Dev at Northeastern University",
+  "version": "2016.1.0",
+  "description": "CS5610 Web Development: Developing sites that are dynamic, data driven and interactive.",
+  "keywords": [
+    "MEAN",
+    "express",
+    "angular",
+    "mongodb",
+    "openshift",
+    "youtube api",
+    "single page",
+    "video"
+  ],
+  "homepage": "http://webdev-amraje.rhcloud.com",
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -13,6 +24,7 @@
     "multer": "^1.1.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {},
@@ -20,6 +32,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
-  "license": "ISC"
+  "author": "Akshay Raje <raje.akshay@gmail.com>",
+  "license": "(ISC OR MIT)"
 }

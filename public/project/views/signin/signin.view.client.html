@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="center-content">
+		<a href="#/">
+			<div class="text-center branding">
+				<img src="/project/img/YouTube_48px.png" alt="iTube Logo">
+				<span>iTube</span>
+			</div>
+		</a>
+		<hr class="hr-main"/>
+		<h5 style="text-align: center;">Discover and share videos</h5>
+		<h6 style="text-align: center;">It's free, always will be.</h6>
+		<br/>
+		<a href="/auth/project/facebook" class="btn btn-primary btn-block btn-fb">
+			<span class="fa fa-facebook-official"></span>
+			Sign in with Facebook
+		</a>
+		<a href="/auth/project/google" class="btn btn-danger btn-block btn-googl">
+			<span class="fa fa-google"></span>
+			Sign in with Google
+		</a>
+		<br/>
+		<div class="special-separator">
+			<span>OR</span>
+		</div>
+		<br/>
+		<div ng-show="model.signInError" class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{model.signInError}}
+		</div>
+		<form>
+			<input ng-model="username" type="email"
+			       class="form-control" placeholder="Email Address"
+			       spellcheck="false"/>
+			<input ng-model="password" type="password"
+			       class="form-control" placeholder="Password"/>
+			<br/>
+			<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+		</form>
+		<br/>
+		<div class="text-center footer-div">
+			<h6>Don't have an account? <a href="#/signup">Sign up</a></h6>
+		</div>
+	</div>
+</div>
