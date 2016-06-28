@@ -32,7 +32,7 @@
 						Discover
 					</a>
 				</li>
-				<li ng-if="model.user.role == 'admin'">
+				<li ng-if="currentUser.role == 'admin'">
 					<a href="#/admin">
 						<span class="fa fa-user nav-icon"></span>
 						Admin
@@ -46,11 +46,11 @@
 					   role="button"
 					   aria-expanded="false">
 						<span class="fa fa-user nav-icon"></span>
-						{{model.user.firstName}}
+						{{currentUser.firstName}}
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#/account/{{model.user._id}}"><span class="fa fa-cog nav-icon"></span>Settings</a></li>
+						<li><a href="#/account"><span class="fa fa-cog nav-icon"></span>Settings</a></li>
 						<li><a ng-click="model.logout()" href=""><span class="fa fa-sign-out nav-icon"></span>Sign Out</a></li>
 					</ul>
 				</li>
@@ -86,7 +86,7 @@
 			<br/>
 			<button ng-click="model.updateUser(model.user)" href="#/account/{{model.user._id}}" type="submit" class="btn btn-block btn-primary">Update</button>
 			<br/>
-			<div ng-if="model.user.role == 'admin'">
+			<div ng-if="currentUser.role == 'admin'">
 				<button ng-click="model.makeAdmin(model.user)" type="submit" class="btn btn-block btn-primary">Make Admin</button>
 			</div>
 		</form>
