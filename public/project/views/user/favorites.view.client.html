@@ -58,3 +58,32 @@
 		</div>
 	</div>
 </nav>
+<div class="container">
+	<h4>Favorites</h4>
+	<hr class="results-heading-separator"/>
+	<br/>
+	<div class="row">
+		<div ng-show="!model.favorites.length" class="col-xs-12">
+			<p class="center-content" style="font-size: 14px">No videos added to favorites yet.</p>
+		</div>
+		<div ng-repeat="hit in model.favorites" class="col-sm-6 col-md-3 result">
+			<div class="result-container">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+					        ng-src="{{hit.url}}" allowfullscreen>
+					</iframe>
+				</div>
+				<div class="result-info">
+					<h5 class="hit-title">{{hit.title}}</h5>
+					<h6 class="hit-author">{{hit.author}}</h6>
+					<h6 class="hit-description">{{hit.description}}</h6>
+				</div>
+				<hr class="results-heading-separator"/>
+				<h6>
+					<span class="fa fa-heart itube-heart-info"></span>
+					<span class="badge">{{hit.totalFavs}}</span>
+				</h6>
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,12 +6,13 @@
 	function DiscoverController($sce, $location, $rootScope, YoutubeService, ProjectUserService){
 		var vm = this;
 		vm.videoResults = [];
+
 		function init(){
 			YoutubeService
 				.getYoutubeKey()
 				.then(function(response){
 					vm.youtubeKey = response.data;
-				});
+				}); 
 		}
 		init();
 		vm.search = function(keywords){
