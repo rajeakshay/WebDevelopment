@@ -3,10 +3,11 @@
 		.module("iTube")
 		.controller("DiscoverController", DiscoverController);
 
-	function DiscoverController($sce, $location, $rootScope, YoutubeService, ProjectUserService){
+	function DiscoverController($sce, $location, $rootScope, YoutubeService, ProjectUserService, VideoService){
 		var vm = this;
 		vm.videoResults = [];
-
+		vm.user = $rootScope.currentUser;
+		
 		function init(){
 			YoutubeService
 				.getYoutubeKey()
@@ -43,6 +44,46 @@
 			return vm.videoResults;
 		}
 
+		vm.addFavorite = function(video){
+				VideoService
+					.getVideoByVideoId(video.id)
+					.then(
+						function(newVideo){
+							ProjectUserService
+								.addToFavorite(vm.user._id, newVideo)
+								.then(
+									function(success){
+										vm.updateSuccess = "Added to Favorites";
+									},
+									function(err){
+										vm.updateError = "Could not add to Favorites";
+									}
+								);
+						},
+						function(err){
+							VideoService
+								.createVideo(video)
+								.then(
+									function(newVideo){
+										ProjectUserService
+											.addToFavorite(vm.user._id, newVideo)
+											.then(
+												function(success){
+													vm.updateSuccess = "Added to Favorites";
+												},
+												function(err){
+													vm.updateError = "Could not add to Favorites";
+												}
+											);
+									},
+									function(err){
+										vm.updateError = "Could not add to Favorites";
+									}
+								);
+						}
+					);
+		};
+		
 		vm.logout = function(){
 			ProjectUserService
 				.signout()
