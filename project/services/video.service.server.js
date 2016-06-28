@@ -37,7 +37,7 @@ module.exports = function(app, models) {
 	function getVideoById(req, res){
 		var vId = req.params.videoId;
 		videoModel
-			.findVideoByIdProjection(vId)
+			.findVideoById(vId)
 			.then(
 				function(video){
 					res.json(video);

@@ -72,39 +72,11 @@ module.exports = function() {
 	}
 
 	function findFollowersForUser(user) {
-		return ProjectUser.aggregate([
-			{
-				$match: {_id: {$in: user.followers}}
-			},
-			{
-				$project: {
-					firstName: 1,
-					lastName: 1,
-					noOfFollowers: {$size: "$followers"},
-					noOfFollowing: {$size: "$following"},
-					noOfFavorites: {$size: "$favorites"},
-					dateCreated: 1
-				}
-			}
-		]);
+		return ProjectUser.find({_id: {$in: user.followers}});
 	}
 
 	function findFollowingForUser(user) {
-		return ProjectUser.aggregate([
-			{
-				$match: {_id: {$in: user.following}}
-			},
-			{
-				$project: {
-					firstName: 1,
-					lastName: 1,
-					noOfFollowers: {$size: "$followers"},
-					noOfFollowing: {$size: "$following"},
-					noOfFavorites: {$size: "$favorites"},
-					dateCreated: 1
-				}
-			}
-		]);
+		return ProjectUser.find({_id: {$in: user.following}});
 	}
 
 	function addFavorite(videoId, userId){

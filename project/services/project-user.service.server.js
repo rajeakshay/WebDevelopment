@@ -434,7 +434,7 @@ module.exports = function(app, models) {
 			.then(
 				function(user){
 					videoModel
-						.findVideoByIdProjection(vId)
+						.findVideoById(vId)
 						.then(
 							function(video){
 								projectUserModel
@@ -476,7 +476,7 @@ module.exports = function(app, models) {
 			.then(
 				function(user){
 					videoModel
-						.findVideoByIdProjection(vId)
+						.findVideoById(vId)
 						.then(
 							function(video){
 								projectUserModel

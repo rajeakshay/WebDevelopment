@@ -6,7 +6,6 @@ module.exports = function() {
 	return {
 		createVideo: createVideo,
 		findVideoById: findVideoById,
-		findVideoByIdProjection: findVideoByIdProjection,
 		findVideoByVideoId: findVideoByVideoId,
 		addFavoriteBy: addFavoriteBy,
 		removeFavoriteBy: removeFavoriteBy,
@@ -70,63 +69,15 @@ module.exports = function() {
 		return Video.findOne({videoId: videoId});
 	}
 
-	function findVideoByIdProjection(videoId){
-		return Video
-			.aggregate([
-				{$match: {_id: videoId}},
-				{$project: {
-					videoId: 1,
-					title: 1,
-					author: 1,
-					description: 1,
-					noOfFavs: {$size: "$favBy"}
-				}}
-			]);
-	}
-
 	function getPublicFeed(){
-		return Video
-			.aggregate([
-				{$sort: { lastFavoriteAt: -1 }},
-				{$limit: 200},
-				{$project: {
-					videoId: 1,
-					title: 1,
-					author: 1,
-					description: 1,
-					noOfFavs: {$size: "$favBy"}
-				}}
-			]);
+		return Video.find();
 	}
 
 	function getUserFeed(user){
-		return Video
-			.aggregate([
-				{$match: {favBy: {$in: user.following}}},
-				{$sort: { lastFavoriteAt : -1}},
-				{$limit: 200},
-				{$project: {
-					videoId: 1,
-					title: 1,
-					author: 1,
-					description: 1,
-					noOfFavs: {$size: "$favBy"}
-				}}
-			]);
+		return Video.find({favBy: {$in: user.following}});
 	}
 
 	function getFavoritesForUser(user){
-		return Video
-			.aggregate([
-				{$match: {_id: {$in: user.favorites}}},
-				{$sort: {_id: -1}},
-				{$project: {
-					videoId: 1,
-					title: 1,
-					author: 1,
-					description: 1,
-					noOfFavs: {$size: "$favBy"}
-				}}
-			]);
+		return Video.find({_id: {$in: user.favorites}});
 	}
 };
