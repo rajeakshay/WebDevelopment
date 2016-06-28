@@ -46,11 +46,11 @@
 					   role="button"
 					   aria-expanded="false">
 						<span class="fa fa-user nav-icon"></span>
-						{{currentUser.firstName}}
+						{{model.user.firstName}}
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#/account"><span class="fa fa-cog nav-icon"></span>Settings</a></li>
+						<li><a href="#/account/{{model.user._id}}"><span class="fa fa-cog nav-icon"></span>Settings</a></li>
 						<li><a ng-click="model.logout()" href=""><span class="fa fa-sign-out nav-icon"></span>Sign Out</a></li>
 					</ul>
 				</li>
@@ -74,24 +74,18 @@
 		</div>
 		<h4>Account Settings</h4>
 		<form>
-			<input ng-model="firstName" type="text"
+			<input ng-model="model.user.firstName" type="text"
 			       class="form-control" placeholder="First Name"
 			       spellcheck="false"/>
-			<input ng-model="lastName" type="text"
+			<input ng-model="model.user.lastName" type="text"
 			       class="form-control" placeholder="Last Name"
 			       spellcheck="false"/>
-			<input ng-model="username" type="email"
+			<input ng-model="model.user.email" type="email"
 			       class="form-control" placeholder="Email Address"
 			       spellcheck="false"/>
 			<br/>
-			<h5>Change Password</h5>
-			<input ng-model="newPassword" type="password"
-			       class="form-control" placeholder="Password"/>
-			<input ng-model="confirmPassword" type="password"
-			       class="form-control" placeholder="Confirm Password"/>
-			<br/>
-			<button ng-click="model.updateUser(email, newPassword, confirmPassword, firstName, lastName)" type="submit" class="btn btn-block btn-primary">Update</button>
-			<button ng-click="model.makeAdmin(email)" type="submit" class="btn btn-block btn-primary">Make Admin</button>
+			<button ng-click="model.updateUser(model.user)" href="#/account/{{model.user._id}}" type="submit" class="btn btn-block btn-primary">Update</button>
+			<button ng-click="model.makeAdmin(model.user)" type="submit" class="btn btn-block btn-primary">Make Admin</button>
 		</form>
 	</div>
 </div>

@@ -1,5 +1,6 @@
-module.exports = function(db, mongoose) {
-	var VideoSchema = require("./video.schema.server.js")(mongoose);
+module.exports = function() {
+	var mongoose = require("mongoose");
+	var VideoSchema = require("./video.schema.server.js")();
 	var Video = mongoose.model("Video", VideoSchema);
 
 	return {

@@ -74,7 +74,7 @@ module.exports = function(userModel, projectUserModel){
 	}
 
 	function projectStrategy(email, password, cb) {
-		userModel
+		projectUserModel
 			.findUserByEmail(email)
 			.then(
 				function(user) {

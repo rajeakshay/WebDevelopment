@@ -28,7 +28,7 @@
 							var newUser = response.data;
 							if(newUser && newUser._id) {
 								$rootScope.currentUser = newUser;
-								$location.url("/user/"+ newUser._id);
+								$location.url("/account/"+ newUser._id);
 							}
 						},
 						function(err){

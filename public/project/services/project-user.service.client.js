@@ -26,13 +26,17 @@
 			deleteUser: deleteUser
 		};
 
-		function signin(user){
-			console.log(user);
-			return $http.post("/api/signin",user);
+		function signin(email, password){
+			var user = {
+				email: email,
+				password: password
+			};
+			console.log("signin - ", user);
+			return $http.post("/api/login",user);
 		}
 
 		function signout(){
-			return $http.post("/api/signout");
+			return $http.post("/api/logout");
 		}
 
 		function loggedIn(){
@@ -40,8 +44,8 @@
 		}
 
 		function signup(newUser) {
-			console.log("createUser - " + newUser.email);
-			return $http.post("/api/signup", newUser);
+			console.log("signup - " + newUser.email);
+			return $http.post("/api/register", newUser);
 		}
 
 		function createUser(newUser){

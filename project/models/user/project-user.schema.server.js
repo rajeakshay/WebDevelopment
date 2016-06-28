@@ -1,6 +1,7 @@
-module.exports = function(mongoose) {
+module.exports = function() {
+	var mongoose = require("mongoose");
 	var ProjectUserSchema = mongoose.Schema({
-		email: {type: String, required: true},
+		email: String,
 		password: String,
 		firstName: String,
 		lastName: String,

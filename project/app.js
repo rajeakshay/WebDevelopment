@@ -1,5 +1,5 @@
-module.exports = function(app, db, mongoose, projectUserModel, securityService) {
-	var models = require("./models/models.server")(db, mongoose, projectUserModel);
-	require("./services/project-user.service.server.js")(app, models, securityService);
+module.exports = function(app) {
+	var models = require("./models/models.server")();
+	require("./services/project-user.service.server.js")(app, models);
 	require("./services/video.service.server.js")(app, models);
 };

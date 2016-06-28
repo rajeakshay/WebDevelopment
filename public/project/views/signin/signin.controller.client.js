@@ -5,13 +5,13 @@
 
 	function SignInController($location, ProjectUserService, $rootScope){
 		var vm = this;
-		vm.login = function (email, password) {
+		vm.signin = function (email, password) {
 			if (!email || !password) {
 				vm.signInError = "All fields are required.";
 			}
 			else {
 				ProjectUserService
-					.signin(email, password)
+						.signin(email, password)
 					.then(
 						function(response){
 							var currentUser = response.data;
@@ -19,7 +19,7 @@
 							if (currentUser && currentUser._id) {
 								$rootScope.currentUser = currentUser;
 								// Redirect to the user's profile
-								$location.url("/user/" + currentUser._id);
+								$location.url("/account/" + currentUser._id);
 							} else {
 								vm.signInError = "Login failed.";
 							}
