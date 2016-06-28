@@ -26,13 +26,9 @@
 			deleteUser: deleteUser
 		};
 
-		function signin(email, password){
-			var user = {
-				email: email,
-				password: password
-			};
-			console.log("signin - ", user);
-			return $http.post("/api/login",user);
+		function signin(newUser){
+			console.log("signin - ", newUser);
+			return $http.post("/api/login", newUser);
 		}
 
 		function signout(){
@@ -89,7 +85,7 @@
 		}
 
 		function addToFavorite(userId, video){
-			console.log("addToFavorite - " + userId + " " + video._id);
+			console.log("addToFavorite - " + userId + " " + video);
 			return $http.put("/api/user/" + userId + "/favorites", video);
 		}
 

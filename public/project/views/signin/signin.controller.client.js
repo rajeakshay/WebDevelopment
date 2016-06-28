@@ -10,8 +10,12 @@
 				vm.signInError = "All fields are required.";
 			}
 			else {
+				var user = {
+					email: email,
+					password: password
+				};
 				ProjectUserService
-						.signin(email, password)
+						.signin(user)
 					.then(
 						function(response){
 							var currentUser = response.data;

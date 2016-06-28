@@ -4,8 +4,8 @@ module.exports = function(app, models) {
 
 	app.post("/api/video", createVideo);
 	app.get("/api/video/:videoId", getVideoById);
-	app.get("/api/video/:ytId", getVideoByVideoId);
-	app.get("/api/video/publicfeed", getPublicFeed);
+	app.get("/api/videoExists/:ytId", getVideoByVideoId);
+	app.get("/api/video", getPublicFeed);
 	app.put("/api/video/:videoId", updateVideo);
 	app.delete("/api/video/:videoId", deleteVideo);
 	app.get("/api/youtube", getYoutubeKey);
@@ -16,7 +16,7 @@ module.exports = function(app, models) {
 			.findVideoByVideoId(video.videoId)
 			.then(
 				function (stats) {
-					if(stats.length !== 0){
+					if(stats){
 						res.status(400).send("Video already exists.");
 					}
 					else {
@@ -54,7 +54,7 @@ module.exports = function(app, models) {
 			.findVideoByVideoId(ytId)
 			.then(
 				function(stats){
-					if(stats.length !== 0){
+					if(stats){
 						res.status(200).send("Video already exists.");
 					}
 					else{

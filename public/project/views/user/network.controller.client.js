@@ -3,11 +3,12 @@
 		.module("iTube")
 		.controller("NetworkController", NetworkController);
 
-	function NetworkController($location, $routeParams, $rootScope, ProjectUserService){
+	function NetworkController($location, $route, $routeParams, $rootScope, ProjectUserService){
 		var vm = this;
 		vm.userResults = [];
 		vm.following = [];
 		vm.followers = [];
+		vm.allUsers = 0;
 
 		function fetch(){
 			ProjectUserService
@@ -116,7 +117,8 @@
 				.addToFollowing(vm.userId, following)
 				.then(
 					function(success){
-						$location.url("/network");
+						// $location.url("/network");
+						$route.reload();
 					},
 					function(err){
 						vm.updateError = "Could not follow the user.";
@@ -129,12 +131,22 @@
 				.removeFromFollowing(vm.userId, followingId)
 				.then(
 					function(success){
-						$location.url("/network");
+						// $location.url("/network");
+						$route.reload();
 					},
 					function(err){
 						vm.updateError = "Could not unfollow the user.";
 					}
 				);
+		};
+
+		vm.toggleView = function(){
+			if(vm.allUsers === 0){
+				vm.allUsers = 1;
+			}
+			else{
+				vm.allUsers = 0;
+			}
 		};
 
 		vm.logout = function(){

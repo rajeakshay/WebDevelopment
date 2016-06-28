@@ -263,7 +263,7 @@ span.caret{
 
 .results-heading{
 	margin-left: 5%;
-	font-size: 18px;
+	font-size: 22px!important;
 }
 .users-heading{
 	font-size: 18px;
@@ -303,13 +303,17 @@ label.radio-inline{
 }
 
 .feature-desc h4{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .feature-desc p{
 	font-size: 18px;
 }
 
-#demo{
+#demo, .padded-bottom{
 	padding-bottom: 40px;
+}
+
+.learn-more img{
+	height: 20%;
 }

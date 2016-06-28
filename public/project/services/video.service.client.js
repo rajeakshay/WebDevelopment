@@ -29,15 +29,15 @@
 		}
 
 		function getPublicFeed(){
-			return $http.get("/api/video/publicfeed");
+			return $http.get("/api/video");
 		}
 
 		function getVideoById(videoId){
-			return $http.get("/api/video/"+videoId);
+			return $http.get("/api/video/" + videoId);
 		}
 
 		function getVideoByVideoId(ytId){
-			return $http.get("/api/video/"+ytId);
+			return $http.get("/api/videoExists/" + ytId);
 		}
 	}
 })();

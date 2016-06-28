@@ -58,15 +58,18 @@
 		</div>
 	</div>
 </nav>
-<div class="container">
+<div class="container padded-bottom">
 	<div class="center-content text-center">
 		<h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
 		<hr/>
 		<h6>
-			<span class="fa fa-long-arrow-up nav-icon"></span>{{model.user.followers.length}}
+			Followers
+			<span class="fa fa-long-arrow-down nav-icon"></span>{{model.user.followers.length}}
 			<span class="link-separator">|</span>
-			<span class="fa fa-long-arrow-down nav-icon"></span>{{model.user.following.length}}
+			Following
+			<span class="fa fa-long-arrow-up nav-icon"></span>{{model.user.following.length}}
 			<span class="link-separator">|</span>
+			Favorites
 			<span class="fa fa-heart nav-icon"></span>{{model.user.favorites.length}}
 		</h6>
 	</div>

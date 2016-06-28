@@ -3,7 +3,7 @@
 		.module("iTube")
 		.controller("ProfileController", ProfileController);
 
-	function ProfileController($location, $rootScope, $routeParams, ProjectUserService, VideoService){
+	function ProfileController($sce, $location, $rootScope, $routeParams, ProjectUserService, VideoService){
 		var vm = this;
 		vm.public = [];
 		vm.network = [];

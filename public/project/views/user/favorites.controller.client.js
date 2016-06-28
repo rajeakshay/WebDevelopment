@@ -3,30 +3,10 @@
 		.module("iTube")
 		.controller("FavoritesController", FavoritesController);
 
-	function FavoritesController($location, $routeParams, $rootScope, ProjectUserService){
+	function FavoritesController($sce, $location, $routeParams, $rootScope, ProjectUserService){
 		var vm = this;
 
 		vm.favorites = [];
-
-		if($routeParams.uid){
-			vm.userId = $routeParams.uid;
-		}
-		else{
-			vm.userId = $rootScope.currentUser._id;
-		}
-
-		function fetch(){
-			ProjectUserService
-				.getFavoritesForUser(vm.userId)
-				.then(
-					function(response){
-						compileResults(response);
-					},
-					function(err){
-						vm.favorites = [];
-					}
-				);
-		}
 
 		function init(){
 			if($routeParams.uid){
@@ -37,19 +17,38 @@
 						.then(
 							function(user){
 								vm.user = user.data;
+								return vm.user;
 							},
 							function(err){
 								vm.user = $rootScope.currentUser;
+								return vm.user;
 							}
-						);
+						).then(
+						function(user){
+							fetch();
+						}
+					);
 				})();
 			}
 			else{
 				vm.userId = $rootScope.currentUser._id;
 				vm.user = $rootScope.currentUser;
+				fetch();
 			}
+		}
 
-			fetch();
+		function fetch(){
+			ProjectUserService
+				.getFavoritesForUser(vm.userId)
+				.then(
+					function(response){
+						console.log(response);
+						compileResults(response.data);
+					},
+					function(err){
+						vm.favorites = [];
+					}
+				);
 		}
 		init();
 
@@ -57,13 +56,13 @@
 			vm.favorites.length = 0;
 			for (var i = data.length - 1; i >= 0; i--) {
 				vm.favorites.push({
-					_id: data._id,
-					videoId: data.videoId,
-					url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data.videoId),
-					title: data.title.substring(0,25) + "...",
-					description: data.description.substring(0,60) + "...",
-					author: data.author,
-					totalFavs: data.favBy.length
+					_id: data[i]._id,
+					videoId: data[i].videoId,
+					url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data[i].videoId),
+					title: data[i].title.substring(0,25) + "...",
+					description: data[i].description.substring(0,60) + "...",
+					author: data[i].author,
+					totalFavs: data[i].favBy.length
 				});
 			}
 			return vm.favorites;

@@ -70,7 +70,6 @@ module.exports = function(app, models) {
 				.findUserById(user._id)
 				.then(
 					function(user){
-						delete user.password;
 						cb(null, user);
 					},
 					function(err){
@@ -430,42 +429,25 @@ module.exports = function(app, models) {
 		var uId = req.params.userId;
 		var vId = req.body._id;
 		projectUserModel
-			.findUserById(uId)
+			.addFavorite(vId, uId)
 			.then(
-				function(user){
+				function(success){
 					videoModel
-						.findVideoById(vId)
+						.addFavoriteBy(vId, uId)
 						.then(
-							function(video){
-								projectUserModel
-									.addFavorite(video._id, user._id)
-									.then(
-										function(success){
-											videoModel
-												.addFavoriteBy(video._id, user._id)
-												.then(
-													function(success){
-														res.status(200).send("User favorite registered.");
-													},
-													function(err){
-														res.status(400).send("Could not add user to videos favoriteBy list.");
-													}
-												);
-										},
-										function(err){
-											res.status(400).send("Could not add to favorites.");
-										}
-									);
+							function(success){
+								res.status(200).send("User favorite registered.");
 							},
 							function(err){
-								res.status(404).send("Could not find video.");
+								res.status(400).send("Could not add user to videos favoriteBy list.");
 							}
 						);
 				},
 				function(err){
-					res.status(404).send("Could not find user.");
+					res.status(400).send("Could not add to favorites.");
 				}
 			);
+
 	}
 
 	function removeFromFavorites(req, res){

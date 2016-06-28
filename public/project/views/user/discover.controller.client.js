@@ -38,19 +38,25 @@
 					title: data.items[i].snippet.title.substring(0,25) + "...",
 					description: data.items[i].snippet.description.substring(0,60) + "...",
 					thumbnail: data.items[i].snippet.thumbnails.default.url,
-					author: data.items[i].snippet.channelTitle
+					author: data.items[i].snippet.channelTitle,
+					original: {
+						videoId: data.items[i].id.videoId,
+						title: data.items[i].snippet.title,
+						author: data.items[i].snippet.channelTitle,
+						description: data.items[i].snippet.description
+					}
 				});
 			}
 			return vm.videoResults;
 		}
 
 		vm.addFavorite = function(video){
-				VideoService
-					.getVideoByVideoId(video.id)
+			VideoService
+				.getVideoByVideoId(video.videoId)
 					.then(
-						function(newVideo){
+						function(success){
 							ProjectUserService
-								.addToFavorite(vm.user._id, newVideo)
+								.addToFavorite(vm.user._id, video)
 								.then(
 									function(success){
 										vm.updateSuccess = "Added to Favorites";
@@ -66,7 +72,7 @@
 								.then(
 									function(newVideo){
 										ProjectUserService
-											.addToFavorite(vm.user._id, newVideo)
+											.addToFavorite(vm.user._id, newVideo.data)
 											.then(
 												function(success){
 													vm.updateSuccess = "Added to Favorites";
