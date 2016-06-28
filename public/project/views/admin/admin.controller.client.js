@@ -12,6 +12,7 @@
 				.getAllUsers()
 				.then(
 					function(response){
+						console.log(response.data);
 						compileResults(response.data);
 					},
 					function(err){
