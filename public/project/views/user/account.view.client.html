@@ -32,7 +32,7 @@
 						Discover
 					</a>
 				</li>
-				<li>
+				<li ng-if="model.user.role == 'admin'">
 					<a href="#/admin">
 						<span class="fa fa-user nav-icon"></span>
 						Admin
@@ -85,7 +85,10 @@
 			       spellcheck="false"/>
 			<br/>
 			<button ng-click="model.updateUser(model.user)" href="#/account/{{model.user._id}}" type="submit" class="btn btn-block btn-primary">Update</button>
-			<button ng-click="model.makeAdmin(model.user)" type="submit" class="btn btn-block btn-primary">Make Admin</button>
+			<br/>
+			<div ng-if="model.user.role == 'admin'">
+				<button ng-click="model.makeAdmin(model.user)" type="submit" class="btn btn-block btn-primary">Make Admin</button>
+			</div>
 		</form>
 	</div>
 </div>

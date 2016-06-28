@@ -45,14 +45,14 @@ module.exports = function(app, models) {
 	app.get('/auth/project/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 	app.get('/auth/project/google/callback',
 		passport.authenticate('google', {
-			successRedirect: '/project/#/account',
+			successRedirect: '/project/#/profile',
 			failureRedirect: '/project/#/signin'
 		}));
 
 	app.get('/auth/project/facebook', passport.authenticate('facebook', { scope : 'email' }));
 	app.get('/auth/project/facebook/callback',
 		passport.authenticate('facebook', {
-			successRedirect: '/project/#/account',
+			successRedirect: '/project/#/profile',
 			failureRedirect: '/project/#/signin'
 		}));
 

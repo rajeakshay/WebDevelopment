@@ -19,7 +19,7 @@
 							if (currentUser && currentUser._id) {
 								$rootScope.currentUser = currentUser;
 								// Redirect to the user's profile
-								$location.url("/account/" + currentUser._id);
+								$location.url("/profile");
 							} else {
 								vm.signInError = "Login failed.";
 							}

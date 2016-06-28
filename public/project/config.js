@@ -30,7 +30,7 @@
 				templateUrl: "views/user/account.view.client.html",
 				controller : "AccountController",
 				controllerAs : "model",
-				resolve: { loggedIn: checkLoggedIn }
+				resolve: { loggedIn: checkAdmin }
 			})
 			.when("/profile",{
 				templateUrl: "views/user/profile.view.client.html",
@@ -42,7 +42,7 @@
 				templateUrl: "views/user/profile.view.client.html",
 				controller : "ProfileController",
 				controllerAs : "model",
-				resolve: { loggedIn: checkLoggedIn }
+				resolve: { loggedIn: checkAdmin }
 			})
 			.when("/discover", {
 				templateUrl: "views/user/discover.view.client.html",
@@ -54,7 +54,7 @@
 				templateUrl: "views/user/discover.view.client.html",
 				controller: "DiscoverController",
 				controllerAs: "model",
-				resolve: { loggedIn: checkLoggedIn }
+				resolve: { loggedIn: checkAdmin }
 			})
 			.when("/favorites", {
 				templateUrl: "views/user/favorites.view.client.html",
@@ -66,7 +66,7 @@
 				templateUrl: "views/user/favorites.view.client.html",
 				controller: "FavoritesController",
 				controllerAs: "model",
-				resolve: { loggedIn: checkLoggedIn }
+				resolve: { loggedIn: checkAdmin }
 			})
 			.when("/network", {
 				templateUrl: "views/user/network.view.client.html",
@@ -78,7 +78,7 @@
 				templateUrl: "views/user/network.view.client.html",
 				controller: "NetworkController",
 				controllerAs: "model",
-				resolve: { loggedIn: checkLoggedIn }
+				resolve: { loggedIn: checkAdmin }
 			})
 			.when("/admin",{
 				templateUrl: "views/admin/admin.view.client.html",
