@@ -109,10 +109,12 @@
 								<span class="fa fa-minus"></span>
 								Unfollow
 							</button>
-							<a href="#/favorites/{{hit.user._id}}" class="btn btn-danger btn-yt">
+							<button type="submit"
+							        ng-click="model.viewFavs(hit.user._id)"
+							        class="btn btn-danger btn-yt">
 								<span class="fa fa-heart"></span>
 								Favorites
-							</a>
+							</button>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>
@@ -149,10 +151,12 @@
 								Follow
 							</button>
 							<span ng-show="hit.following" class="badge badge-follow">Following</span>
-							<a href="#/favorites/{{hit.user._id}}" class="btn btn-danger btn-yt">
+							<button type="submit"
+							        ng-click="model.viewFavs(hit.user._id)"
+							        class="btn btn-danger btn-yt">
 								<span class="fa fa-heart"></span>
 								Favorites
-							</a>
+							</button>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>
@@ -202,10 +206,12 @@
 								<span class="fa fa-plus"></span>
 								Follow
 							</button>
-							<a href="#/favorites/{{hit.data._id}}" class="btn btn-danger btn-yt">
+							<button type="submit"
+							        ng-click="model.viewFavs(hit.data._id)"
+							        class="btn btn-danger btn-yt">
 								<span class="fa fa-heart"></span>
 								Favorites
-							</a>
+							</button>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>

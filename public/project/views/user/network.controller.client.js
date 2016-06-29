@@ -209,6 +209,15 @@
 				);
 		};
 
+		vm.viewFavs = function(resultUserId){
+			if($rootScope.currentUser.role == "admin"){
+				$location.url("/favorites/" + resultUserId + "/as/" + vm.userId);
+			}
+			else{
+				$location.url("/favorites/" + resultUserId);
+			}
+		};
+
 		vm.toggleView = function(){
 			if(vm.allUsers === 0){
 				vm.allUsers = 1;

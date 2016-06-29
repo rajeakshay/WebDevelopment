@@ -68,6 +68,12 @@
 				controllerAs: "model",
 				resolve: { loggedIn: checkLoggedIn }
 			})
+			.when("/favorites/:uid/as/:otherid", {
+				templateUrl: "views/user/favorites.view.client.html",
+				controller: "FavoritesController",
+				controllerAs: "model",
+				resolve: { loggedIn: checkAdmin }
+			})
 			.when("/network", {
 				templateUrl: "views/user/network.view.client.html",
 				controller: "NetworkController",
