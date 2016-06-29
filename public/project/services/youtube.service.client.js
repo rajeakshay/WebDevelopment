@@ -18,7 +18,7 @@
 				params: {
 					key: apiKey,
 					type: 'video',
-					maxResults: '20',
+					maxResults: '40',
 					part: 'id,snippet',
 					fields: 'items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/default,items/snippet/channelTitle',
 					q: (keywords) ? keywords : ''
