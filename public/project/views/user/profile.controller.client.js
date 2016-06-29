@@ -7,6 +7,7 @@
 		var vm = this;
 		vm.public = [];
 		vm.network = [];
+		vm.networkRecommendations = 0;
 
 		function fetch(){
 			ProjectUserService
@@ -106,6 +107,15 @@
 						hit.error = true;
 					}
 				);
+		};
+
+		vm.toggleView = function(){
+			if(vm.networkRecommendations === 0){
+				vm.networkRecommendations = 1;
+			}
+			else{
+				vm.networkRecommendations = 0;
+			}
 		};
 
 		vm.logout = function(){

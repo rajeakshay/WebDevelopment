@@ -79,12 +79,12 @@ module.exports = function(app, models) {
 				);
 	}
 
-	function projectStrategy(email, password, cb) {
+	function projectStrategy(username, password, cb) {
 		projectUserModel
-			.findUserByEmail(email)
+			.findUserByEmail(username)
 			.then(
 				function(user) {
-					if(user && user.email === email && bcrypt.compareSync(password, user.password)) {
+					if(user && user.email === username && bcrypt.compareSync(password, user.password)) {
 						return cb(null, user);
 					} else {
 						return cb(null, false);

@@ -11,7 +11,7 @@
 			}
 			else {
 				var user = {
-					email: email,
+					username: email,
 					password: password
 				};
 				ProjectUserService
