@@ -111,7 +111,7 @@
 						<span class="badge">{{hit.video.favs}}</span>
 						<span ng-show="hit.added" class="badge badge-added">Added to Favorites</span>
 						<button type="submit"
-						   ng-click="model.addFavorite(hit)"
+						   ng-click="model.addFavorite(hit, 0)"
 						   ng-hide="hit.added"
 						   class="btn btn-default itube-heart">
 							<span class="fa fa-heart"></span>
@@ -160,7 +160,7 @@
 						<span class="badge">{{hit.video.favs}}</span>
 						<span ng-show="hit.added" class="badge badge-added">Added to Favorites</span>
 						<button type="submit"
-						        ng-click="model.addFavorite(hit)"
+						        ng-click="model.addFavorite(hit, 1)"
 						        ng-hide="hit.added"
 						        class="btn btn-default itube-heart">
 							<span class="fa fa-heart"></span>

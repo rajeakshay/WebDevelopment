@@ -98,13 +98,33 @@
 			return vm.network;
 		}
 
-		vm.addFavorite = function(hit){
+		vm.addFavorite = function(hit, viewId){
 			ProjectUserService
 				.addToFavorite(vm.user._id, hit.video)
 				.then(
 					function(success){
 						hit.added = true;
 						hit.error = false;
+						hit.video.favs = hit.video.favs + 1;
+						vm.user.favorites.push(hit.video._id);
+						if(viewId == 0){
+							for(var i = 0; i < vm.network.length; i++){
+								if(vm.network[i].video._id == hit.video._id){
+									vm.network[i].added = true;
+									vm.network[i].video.favs = vm.network[i].video.favs + 1;
+									break;
+								}
+							}
+						}
+						else{
+							for(var j = 0; j < vm.public.length; j++){
+								if(vm.public[j].video._id == hit.video._id){
+									vm.public[j].added = true;
+									vm.public[j].video.favs = vm.public[j].video.favs + 1;
+									break;
+								}
+							}
+						}
 					},
 					function(err){
 						hit.added = false;
