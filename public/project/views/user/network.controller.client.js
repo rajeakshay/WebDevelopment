@@ -188,7 +188,6 @@
 				.addToFollowing(vm.userId, user)
 				.then(
 					function(success){
-						// $location.url("/network");
 						$route.reload();
 					},
 					function(err){
@@ -202,7 +201,6 @@
 				.removeFromFollowing(vm.userId, followingId)
 				.then(
 					function(success){
-						// $location.url("/network");
 						$route.reload();
 					},
 					function(err){

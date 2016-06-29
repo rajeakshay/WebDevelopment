@@ -3,7 +3,7 @@
 		.module("iTube")
 		.controller("AdminController", AdminController);
 
-	function AdminController($location, $rootScope, ProjectUserService){
+	function AdminController($route, $location, $rootScope, ProjectUserService){
 		var vm = this;
 		vm.userResults = [];
 
@@ -40,7 +40,7 @@
 				.deleteUser(userId)
 				.then(
 					function(succ){
-						$location.url("/admin");
+						$route.reload();
 					}
 				);
 		};
