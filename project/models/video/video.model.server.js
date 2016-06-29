@@ -11,6 +11,7 @@ module.exports = function() {
 		removeFavoriteBy: removeFavoriteBy,
 		removeAllFavoritesBy: removeAllFavoritesBy,
 		getPublicFeed: getPublicFeed,
+		getFilteredFeed: getFilteredFeed,
 		getUserFeed: getUserFeed,
 		getFavoritesForUser: getFavoritesForUser,
 		updateVideo: updateVideo,
@@ -73,8 +74,16 @@ module.exports = function() {
 		return Video.find();
 	}
 
+	function getFilteredFeed(user){
+		return Video.find({_id: {$nin: user.favorites}});
+	}
+
 	function getUserFeed(user){
-		return Video.find({favBy: {$in: user.following}});
+		return Video.find({
+			$and: [
+				{_id: {$nin: user.favorites}},
+				{favBy: {$in: user.following}}
+			]});
 	}
 
 	function getFavoritesForUser(user){

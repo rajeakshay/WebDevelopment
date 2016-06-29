@@ -12,6 +12,7 @@
 			createUser: createUser,
 			findUserById: findUserById,
 			getAllUsers: getAllUsers,
+			getFilteredFeed: getFilteredFeed,
 			getUserFeed: getUserFeed,
 			getFavoritesForUser: getFavoritesForUser,
 			getFollowersForUser: getFollowersForUser,
@@ -57,6 +58,11 @@
 		function getAllUsers(){
 			console.log("getAllUsers -");
 			return $http.get("/api/user");
+		}
+
+		function getFilteredFeed(userId){
+			console.log("getFilteredFeed -", userId);
+			return $http.get("/api/user/"+ userId +"/publicfeed");
 		}
 
 		function getUserFeed(userId){

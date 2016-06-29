@@ -28,6 +28,7 @@ module.exports = function(app, models) {
 
 	app.post("/api/user", createUser);
 	app.get("/api/user", getAllUsers);
+	app.get("/api/user/:userId/publicfeed", getFilteredFeed);
 	app.get("/api/user/:userId/feed", getUserFeed);
 	app.get("/api/user/:userId/favorites", getFavoritesForUser);
 	app.get("/api/user/:userId/followers", getFollowersForUser);
@@ -250,6 +251,29 @@ module.exports = function(app, models) {
 				},
 				function(err){
 					res.status(404).send("Unable to find any users.");
+				}
+			);
+	}
+
+	function getFilteredFeed(req, res){
+		var uId = req.params.userId;
+		projectUserModel
+			.findUserById(uId)
+			.then(
+				function(user){
+					videoModel
+						.getFilteredFeed(user)
+						.then(
+							function(feed){
+								res.json(feed);
+							},
+							function(err){
+								res.status(400).send("Did not find filtered feed for this user.");
+							}
+						);
+				},
+				function(err){
+					res.status(404).send("User not found.");
 				}
 			);
 	}

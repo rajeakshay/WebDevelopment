@@ -46,7 +46,7 @@
 					   role="button"
 					   aria-expanded="false">
 						<span class="fa fa-user nav-icon"></span>
-						{{currentUser.firstName}}
+						<span class="profile-username">{{currentUser.firstName}}</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
@@ -63,18 +63,18 @@
 		<h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
 		<hr/>
 		<h6>
-			Followers
+			<span class="profile-description">Followers</span>
 			<span class="fa fa-long-arrow-down nav-icon"></span>{{model.user.followers.length}}
 			<span class="link-separator">|</span>
-			Following
+			<span class="profile-description">Following</span>
 			<span class="fa fa-long-arrow-up nav-icon"></span>{{model.user.following.length}}
 			<span class="link-separator">|</span>
-			Favorites
+			<span class="profile-description">Favorites</span>
 			<span class="fa fa-heart nav-icon"></span>{{model.user.favorites.length}}
 		</h6>
 	</div>
 	<br/>
-	<h4>Recent videos from iTube</h4>
+	<h4>Recommended videos from iTube</h4>
 	<hr class="results-heading-separator"/>
 	<br/>
 	<div class="row">
@@ -85,27 +85,32 @@
 			<div class="result-container">
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item"
-					        ng-src="{{hit.url}}" allowfullscreen>
+					        ng-src="{{hit.video.url}}" allowfullscreen>
 					</iframe>
 				</div>
 				<div class="result-info">
-					<h5 class="hit-title">{{hit.title}}</h5>
-					<h6 class="hit-author">{{hit.author}}</h6>
-					<h6 class="hit-description">{{hit.description}}</h6>
+					<h5 class="hit-title">{{hit.video.title}}</h5>
+					<h6 class="hit-author">{{hit.video.author}}</h6>
+					<h6 class="hit-description">{{hit.video.description}}</h6>
 				</div>
 				<hr class="results-heading-separator"/>
 				<h6>
 					<span class="fa fa-heart itube-heart-info"></span>
-					<span class="badge">{{hit.favs}}</span>
-					<a href="" class="btn btn-default itube-heart">
+					<span class="badge">{{hit.video.favs}}</span>
+					<span ng-show="hit.added" class="badge badge-added">Added to Favorites</span>
+					<button type="submit"
+					   ng-click="model.addFavorite(hit)"
+					   ng-hide="hit.added"
+					   class="btn btn-default itube-heart">
 						<span class="fa fa-heart"></span>
 						Add to Favorite
-					</a>
+					</button>
+					<span ng-show="hit.error" class="badge badge-error">Error!</span>
 				</h6>
 			</div>
 		</div>
 	</div>
-	<h4>Recent videos from your Network</h4>
+	<h4>Recommended videos from your Network</h4>
 	<hr class="results-heading-separator"/>
 	<br/>
 	<div class="row">

@@ -29,61 +29,80 @@
 				);
 		};
 
+		// right padding s with c to a total of n chars
+		function padding_right(s, c, n) {
+			if (! s || ! c || s.length >= n) {
+				return s;
+			}
+			var max = (n - s.length)/c.length;
+			for (var i = 0; i < max; i++) {
+				s += c;
+			}
+			return s;
+		}
+
 		function compileResults(data){
 			vm.videoResults.length = 0;
 			for (var i = data.items.length - 1; i >= 0; i--) {
 				vm.videoResults.push({
 					id: data.items[i].id.videoId,
 					url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data.items[i].id.videoId),
-					title: data.items[i].snippet.title.substring(0,25) + "...",
-					description: data.items[i].snippet.description.substring(0,60) + "...",
+					title: padding_right(data.items[i].snippet.title.replace(/(\r\n|\n|\r)/gm,""), " ", 25),
+					description: padding_right(data.items[i].snippet.description.replace(/(\r\n|\n|\r)/gm,""), " ", 60),
 					thumbnail: data.items[i].snippet.thumbnails.default.url,
-					author: data.items[i].snippet.channelTitle,
+					author: padding_right(data.items[i].snippet.channelTitle, " ", 50),
 					original: {
 						videoId: data.items[i].id.videoId,
 						title: data.items[i].snippet.title,
 						author: data.items[i].snippet.channelTitle,
 						description: data.items[i].snippet.description
-					}
+					},
+					added: false,
+					error: false
 				});
 			}
 			return vm.videoResults;
 		}
 
-		vm.addFavorite = function(video){
+		vm.addFavorite = function(hit){
 			VideoService
-				.getVideoByVideoId(video.videoId)
+				.getVideoByVideoId(hit.original.videoId)
 					.then(
 						function(success){
 							ProjectUserService
-								.addToFavorite(vm.user._id, video)
+								.addToFavorite(vm.user._id, hit.original)
 								.then(
 									function(success){
-										vm.updateSuccess = "Added to Favorites";
+										hit.added = true;
+										hit.error = false;
 									},
 									function(err){
-										vm.updateError = "Could not add to Favorites";
+										hit.added = false;
+										hit.error = true;
 									}
 								);
 						},
 						function(err){
 							VideoService
-								.createVideo(video)
+								.createVideo(hit.original)
 								.then(
 									function(newVideo){
 										ProjectUserService
 											.addToFavorite(vm.user._id, newVideo.data)
 											.then(
 												function(success){
-													vm.updateSuccess = "Added to Favorites";
+													hit.added = true;
+													hit.error = false;
 												},
 												function(err){
-													vm.updateError = "Could not add to Favorites";
+													hit.added = false;
+													hit.error = true;
 												}
 											);
 									},
 									function(err){
-										vm.updateError = "Could not add to Favorites";
+										hit.added = false;
+										hit.error = true;
 									}
 								);
 						}

@@ -3,14 +3,14 @@
 		.module("iTube")
 		.controller("ProfileController", ProfileController);
 
-	function ProfileController($sce, $location, $rootScope, $routeParams, ProjectUserService, VideoService){
+	function ProfileController($sce, $location, $rootScope, $routeParams, ProjectUserService){
 		var vm = this;
 		vm.public = [];
 		vm.network = [];
 
 		function fetch(){
-			VideoService
-				.getPublicFeed()
+			ProjectUserService
+				.getFilteredFeed(vm.userId)
 				.then(
 					function(response){
 						compilePublicFeed(response.data);
@@ -61,13 +61,17 @@
 			vm.public.length = 0;
 			for (var i = data.length - 1; i >= 0; i--) {
 				vm.public.push({
-					_id: data[i]._id,
-					videoId: data[i].videoId,
-					url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data[i].videoId),
-					title: data[i].title.substring(0,25) + "...",
-					description: data[i].description.substring(0,60) + "...",
-					author: data[i].author,
-					favs: data[i].favBy.length
+					added: false,
+					error: false,
+					video: {
+						_id: data[i]._id,
+						videoId: data[i].videoId,
+						url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data[i].videoId),
+						title: data[i].title.substring(0,25) + "...",
+						description: data[i].description.substring(0,60) + "...",
+						author: data[i].author,
+						favs: data[i].favBy.length
+					}
 				});
 			}
 			return vm.public;
@@ -88,6 +92,21 @@
 			}
 			return vm.network;
 		}
+
+		vm.addFavorite = function(hit){
+			ProjectUserService
+				.addToFavorite(vm.user._id, hit.    video)
+				.then(
+					function(success){
+						hit.added = true;
+						hit.error = false;
+					},
+					function(err){
+						hit.added = false;
+						hit.error = true;
+					}
+				);
+		};
 
 		vm.logout = function(){
 			ProjectUserService

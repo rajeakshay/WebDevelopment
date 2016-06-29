@@ -34,6 +34,11 @@ Google Red: #db3236
     .feature-desc{
 	    padding-bottom: 25px;
     }
+
+    .profile-description{
+	    visibility: hidden;
+	    display: none;
+    }
 }
 
 @media (min-width: 768px){
@@ -42,9 +47,25 @@ Google Red: #db3236
 	}
 }
 
+@media (min-width: 768px) and (max-width: 992px){
+	.navbar-inverse .navbar-nav>li>a{
+		font-size: 12px!important;
+	}
+
+	.profile-username{
+		visibility: hidden;
+		display: none;
+	}
+}
+
 @media (min-width: 992px){
 	.center-content{
 		width: 60%;
+	}
+
+	.result-info .hit-title{
+		font-size: small!important;
+		font-weight: bold;
 	}
 }
 
@@ -288,10 +309,14 @@ span.caret{
 
 .result-info .hit-title{
 	font-size: medium;
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
-.result-info .hit-author{
+.result-info .hit-author, .result-info .hit-description{
 	font-size: small;
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 label.radio-inline{
@@ -316,4 +341,18 @@ label.radio-inline{
 
 .learn-more img{
 	height: 20%;
+}
+
+.badge-added{
+	margin: 10px;
+	padding: 6px 16px
+}
+
+.badge-error{
+	background-color: #cd201f;
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	padding: 6px 16px
 }
