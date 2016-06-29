@@ -66,7 +66,7 @@
 				templateUrl: "views/user/favorites.view.client.html",
 				controller: "FavoritesController",
 				controllerAs: "model",
-				resolve: { loggedIn: checkAdmin }
+				resolve: { loggedIn: checkLoggedIn }
 			})
 			.when("/network", {
 				templateUrl: "views/user/network.view.client.html",

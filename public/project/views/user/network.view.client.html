@@ -109,6 +109,10 @@
 								<span class="fa fa-minus"></span>
 								Unfollow
 							</button>
+							<a href="#/favorites/{{hit.user._id}}" class="btn btn-danger btn-yt">
+								<span class="fa fa-heart"></span>
+								Favorites
+							</a>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>
@@ -144,7 +148,11 @@
 								<span class="fa fa-plus"></span>
 								Follow
 							</button>
-							<span ng-show="hit.following" class="badge badge-added">Following</span>
+							<span ng-show="hit.following" class="badge badge-follow">Following</span>
+							<a href="#/favorites/{{hit.user._id}}" class="btn btn-danger btn-yt">
+								<span class="fa fa-heart"></span>
+								Favorites
+							</a>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>
@@ -172,7 +180,7 @@
 		<br/>
 		<div class="row">
 			<div ng-show="!model.userResults.length" class="col-xs-12">
-				<p class="center-content" style="font-size: 14px">No one here yet.</p>
+				<p class="center-content" style="font-size: 14px">No more users to follow.</p>
 			</div>
 			<div ng-repeat="hit in model.userResults | filter : keywords" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
@@ -194,6 +202,10 @@
 								<span class="fa fa-plus"></span>
 								Follow
 							</button>
+							<a href="#/favorites/{{hit.data._id}}" class="btn btn-danger btn-yt">
+								<span class="fa fa-heart"></span>
+								Favorites
+							</a>
 							<span ng-show="hit.error" class="badge badge-error">Error!</span>
 						</h6>
 					</div>
