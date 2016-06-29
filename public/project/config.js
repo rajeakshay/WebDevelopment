@@ -74,7 +74,25 @@
 				controllerAs: "model",
 				resolve: { loggedIn: checkLoggedIn }
 			})
+			.when("/network/view/:searchView", {
+				templateUrl: "views/user/network.view.client.html",
+				controller: "NetworkController",
+				controllerAs: "model",
+				resolve: { loggedIn: checkLoggedIn }
+			})
 			.when("/network/:uid", {
+				templateUrl: "views/user/network.view.client.html",
+				controller: "NetworkController",
+				controllerAs: "model",
+				resolve: { loggedIn: checkAdmin }
+			})
+			.when("/network/:uid/view/:searchView", {
+				templateUrl: "views/user/network.view.client.html",
+				controller: "NetworkController",
+				controllerAs: "model",
+				resolve: { loggedIn: checkAdmin }
+			})
+			.when("/network/:uid/view/:searchView", {
 				templateUrl: "views/user/network.view.client.html",
 				controller: "NetworkController",
 				controllerAs: "model",

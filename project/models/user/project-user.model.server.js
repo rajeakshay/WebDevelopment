@@ -11,6 +11,7 @@ module.exports = function() {
 		findUserByFacebookId: findUserByFacebookId,
 		findUserByGoogleId: findUserByGoogleId,
 		findAllUsers: findAllUsers,
+		findUsersToFollow: findUsersToFollow,
 		findFollowersForUser: findFollowersForUser,
 		findFollowingForUser: findFollowingForUser,
 		addFavorite: addFavorite,
@@ -69,6 +70,10 @@ module.exports = function() {
 
 	function findAllUsers(){
 		return ProjectUser.find();
+	}
+
+	function findUsersToFollow(user){
+		return ProjectUser.find({_id: {$nin: user.following}});
 	}
 
 	function findFollowersForUser(user) {

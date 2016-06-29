@@ -29,6 +29,7 @@ module.exports = function(app, models) {
 	app.post("/api/user", createUser);
 	app.get("/api/user", getAllUsers);
 	app.get("/api/user/:userId/publicfeed", getFilteredFeed);
+	app.get("/api/user/:userId/tofollow", getUsersToFollow);
 	app.get("/api/user/:userId/feed", getUserFeed);
 	app.get("/api/user/:userId/favorites", getFavoritesForUser);
 	app.get("/api/user/:userId/followers", getFollowersForUser);
@@ -251,6 +252,30 @@ module.exports = function(app, models) {
 				},
 				function(err){
 					res.status(404).send("Unable to find any users.");
+				}
+			);
+	}
+
+	function getUsersToFollow(req, res){
+		var uId = req.params.userId;
+		projectUserModel
+			.findUserById(uId)
+			.then(
+				function(user){
+					user.following.push(user._id);
+					projectUserModel
+						.findUsersToFollow(user)
+						.then(
+							function(toFollow){
+								res.json(toFollow);
+							},
+							function(err){
+								res.status(404).send("Could not find users to follow.");
+							}
+						);
+				},
+				function(err){
+					res.status(404).send("Could not find user.");
 				}
 			);
 	}

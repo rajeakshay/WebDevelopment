@@ -82,13 +82,17 @@
 			vm.network.length = 0;
 			for (var i = data.length - 1; i >= 0; i--) {
 				vm.network.push({
-					_id: data[i]._id,
-					videoId: data[i].videoId,
-					url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data[i].videoId),
-					title: data[i].title.substring(0,25) + "...",
-					description: data[i].description.substring(0,60) + "...",
-					author: data[i].author,
-					favs: data[i].favBy.length
+					added: false,
+					error: false,
+					video: {
+						_id: data[i]._id,
+						videoId: data[i].videoId,
+						url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + data[i].videoId),
+						title: data[i].title.substring(0,25) + "...",
+						description: data[i].description.substring(0,60) + "...",
+						author: data[i].author,
+						favs: data[i].favBy.length
+					}
 				});
 			}
 			return vm.network;
@@ -96,7 +100,7 @@
 
 		vm.addFavorite = function(hit){
 			ProjectUserService
-				.addToFavorite(vm.user._id, hit.    video)
+				.addToFavorite(vm.user._id, hit.video)
 				.then(
 					function(success){
 						hit.added = true;

@@ -87,7 +87,11 @@
 		<br/>
 		<div class="row">
 			<div ng-show="!model.public.length" class="col-xs-12">
-				<p class="center-content" style="font-size: 14px">Nothing to show here.</p>
+				<p class="center-content" style="font-size: 14px">
+					Currently, there are no new videos to recommend.
+					<br/>
+					See recommendations from Network.
+				</p>
 			</div>
 			<div ng-repeat="hit in model.public" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
@@ -131,28 +135,37 @@
 		<br/>
 		<div class="row">
 			<div ng-show="!model.network.length" class="col-xs-12">
-				<p class="center-content" style="font-size: 14px">Follow someone to see recommendations.</p>
+				<p class="center-content" style="font-size: 14px">
+					Currently, there are no new recommendations.
+					<br/>
+					Follow more users to get recommendations.
+				</p>
 			</div>
 			<div ng-repeat="hit in model.network" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe class="embed-responsive-item"
-						        ng-src="{{hit.url}}" allowfullscreen>
+						        ng-src="{{hit.video.url}}" allowfullscreen>
 						</iframe>
 					</div>
 					<div class="result-info">
-						<h5 class="hit-title">{{hit.title}}</h5>
-						<h6 class="hit-author">{{hit.author}}</h6>
-						<h6 class="hit-description">{{hit.description}}</h6>
+						<h5 class="hit-title">{{hit.video.title}}</h5>
+						<h6 class="hit-author">{{hit.video.author}}</h6>
+						<h6 class="hit-description">{{hit.video.description}}</h6>
 					</div>
 					<hr class="results-heading-separator"/>
 					<h6>
 						<span class="fa fa-heart itube-heart-info"></span>
-						<span class="badge">{{hit.favs}}</span>
-						<a href="" class="btn btn-default itube-heart">
+						<span class="badge">{{hit.video.favs}}</span>
+						<span ng-show="hit.added" class="badge badge-added">Added to Favorites</span>
+						<button type="submit"
+						        ng-click="model.addFavorite(hit)"
+						        ng-hide="hit.added"
+						        class="btn btn-default itube-heart">
 							<span class="fa fa-heart"></span>
 							Add to Favorite
-						</a>
+						</button>
+						<span ng-show="hit.error" class="badge badge-error">Error!</span>
 					</h6>
 				</div>
 			</div>
