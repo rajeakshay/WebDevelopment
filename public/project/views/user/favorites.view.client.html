@@ -77,11 +77,18 @@
 	<h4>Favorites</h4>
 	<hr class="results-heading-separator"/>
 	<br/>
+	<div class="input-group center-content" ng-show="model.favorites.length">
+		<input ng-model="favoritesQuery"
+		       type="text"
+		       class="form-control"
+		       placeholder="Filter videos from Favorites">
+	</div>
+	<br/>
 	<div class="row">
 		<div ng-show="!model.favorites.length" class="col-xs-12">
 			<p class="center-content" style="font-size: 14px">No videos added to favorites yet.</p>
 		</div>
-		<div ng-repeat-start="hit in model.favorites" class="col-sm-6 col-md-3 result">
+		<div ng-repeat-start="hit in model.favorites | filter: favoritesQuery" class="col-sm-6 col-md-3 result">
 			<div class="result-container">
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item"
