@@ -120,7 +120,7 @@
 				<div ng-show="!model.videoResults.length" class="col-xs-12">
 					<p class="center-content" style="font-size: 18px">Search your favorite content in the box above.</p>
 				</div>
-				<div ng-repeat="hit in model.videoResults" class="col-sm-6 col-md-3 result">
+				<div ng-repeat-start="hit in model.videoResults" class="col-sm-6 col-md-3 result">
 					<div class="result-container">
 						<div class="embed-responsive embed-responsive-16by9">
 							<iframe class="embed-responsive-item"
@@ -141,6 +141,7 @@
 						</h6>
 					</div>
 				</div>
+				<div ng-repeat-end ng-if="$index % 4 == 3" class="clearfix visible-md-block visible-lg-block"></div>
 			</div>
 		</div>
 	</div>
