@@ -7,7 +7,7 @@
 		var vm = this;
 		vm.public = [];
 		vm.network = [];
-		vm.networkRecommendations = 0;
+		vm.networkRecommendations = 1;
 
 		function fetch(){
 			ProjectUserService

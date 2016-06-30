@@ -88,9 +88,7 @@
 		<div class="row">
 			<div ng-show="!model.public.length" class="col-xs-12">
 				<p class="center-content" style="font-size: 14px">
-					Currently, there are no new videos to recommend.
-					<br/>
-					See recommendations from Network.
+					There are no new videos to recommend.
 				</p>
 			</div>
 			<div ng-repeat-start="hit in model.public" class="col-sm-6 col-md-3 result">
@@ -138,9 +136,14 @@
 		<div class="row">
 			<div ng-show="!model.network.length" class="col-xs-12">
 				<p class="center-content" style="font-size: 14px">
-					Currently, there are no new recommendations.
+					There are no new recommendations from your Network.
 					<br/>
-					Follow more users to get recommendations.
+					<br/>
+					But do not worry, you can do either of the following:
+					<br/>
+					1. See recommendations from iTube.
+					<br/>
+					2. Follow more users to get recommendations.
 				</p>
 			</div>
 			<div ng-repeat="hit in model.network" class="col-sm-6 col-md-3 result">
