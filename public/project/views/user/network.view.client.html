@@ -89,7 +89,7 @@
 			<div ng-show="!model.following.length" class="col-xs-12">
 				<p class="center-content" style="font-size: 14px">Not following anyone yet.</p>
 			</div>
-			<div ng-repeat="hit in model.following" class="col-sm-6 col-md-3 result">
+			<div ng-repeat="hit in model.following | orderBy : 'user.name'" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
 					<div class="user-info">
 						<h5>{{hit.user.name}}</h5>
@@ -129,7 +129,7 @@
 			<div ng-show="!model.followers.length" class="col-xs-12">
 				<p class="center-content" style="font-size: 14px">No followers yet.</p>
 			</div>
-			<div ng-repeat="hit in model.followers" class="col-sm-6 col-md-3 result">
+			<div ng-repeat="hit in model.followers | orderBy: 'user.name'" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
 					<div class="user-info">
 						<h5>{{hit.user.name}}</h5>
@@ -186,7 +186,7 @@
 			<div ng-show="!model.userResults.length" class="col-xs-12">
 				<p class="center-content" style="font-size: 14px">No more users to follow.</p>
 			</div>
-			<div ng-repeat="hit in model.userResults | filter : keywords" class="col-sm-6 col-md-3 result">
+			<div ng-repeat="hit in model.userResults | filter : keywords | orderBy: 'data.name'" class="col-sm-6 col-md-3 result">
 				<div class="result-container">
 					<div class="user-info">
 						<h5>{{hit.data.name}}</h5>
