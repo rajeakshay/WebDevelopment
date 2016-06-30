@@ -11,7 +11,7 @@ body {
 }
 
 .full {
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../img/boston.jpg') no-repeat center center fixed; 
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/boston.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -19,7 +19,9 @@ body {
 }
 
 .pic{
-	margin-left: 20%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	width: 140px;
 	height: 160px;
 	border-radius: 50%;
@@ -32,14 +34,15 @@ body {
 }
 
 h6 a, h6 a:hover, h6 a:focus, h6 a:active{
-	color: black;
+	color: white;
 	font-weight: bold;
 	text-decoration: none;
 }
 
 .social{
-	font-size: x-large;
-	padding: 0 15px;
+	font-size: larger;
+	padding: 0 10px 0 0;
+	color: black!important;
 }
 
 .navbar-inverse .navbar-brand{
@@ -74,7 +77,12 @@ h6 a, h6 a:hover, h6 a:focus, h6 a:active{
 }
 
 .content{
-	color: black;
+	color: white!important;
+	text-align: justify;
+}
+
+.content *{
+	color: white;
 	text-align: justify;
 }
 
@@ -83,9 +91,20 @@ h6 a, h6 a:hover, h6 a:focus, h6 a:active{
 	padding-bottom: 50px;
 }
 
+.social-link{
+	background-color: white!important;
+	color: black!important;
+	text-transform: capitalize;
+	font-size: medium;
+}
+
 @media (max-width: 767px){
 	.center-content{
 		width: 90%;
+	}
+
+	.traits{
+		display: block;
 	}
 }
 
