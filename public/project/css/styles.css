@@ -36,6 +36,15 @@ Google Red: #db3236
     }
 }
 
+.feature-top-container, .feature-bottom-container{
+	height: 50%!important;
+}
+
+.feature-pic{
+	width: 100%;
+	display: block;
+}
+
 @media (min-width: 768px){
 	.center-content{
 		width: 75%;
@@ -324,10 +333,23 @@ label.radio-inline{
 
 .feature-desc h4{
 	margin-top: 20px;
+	padding-top: 10px;
 }
 
 .feature-desc p{
 	font-size: 18px;
+}
+
+.feature-desc h4.feature-follow{
+	padding-top: 15px;
+}
+
+.feature-desc h4.feature-share{
+	padding-top: 7px;
+}
+
+.feature-desc h4.feature-demo{
+	padding-top: 0;
 }
 
 #demo, .padded-bottom{
@@ -356,4 +378,3 @@ label.radio-inline{
 	margin: 5px 10px;
 	padding: 6px 16px
 }
-
