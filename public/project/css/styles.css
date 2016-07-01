@@ -356,6 +356,10 @@ label.radio-inline{
 	padding-bottom: 40px;
 }
 
+.padded-top{
+	padding-top: 90px;
+}
+
 .learn-more img{
 	height: 20%;
 }
