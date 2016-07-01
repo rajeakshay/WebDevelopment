@@ -34,11 +34,6 @@ Google Red: #db3236
     .feature-desc{
 	    padding-bottom: 25px;
     }
-
-    .profile-description{
-	    visibility: hidden;
-	    display: none;
-    }
 }
 
 @media (min-width: 768px){

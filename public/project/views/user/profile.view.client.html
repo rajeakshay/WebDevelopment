@@ -63,13 +63,13 @@
 		<h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
 		<hr/>
 		<h6>
-			<span class="profile-description">Followers</span>
+			<span class="hidden-xs">Followers</span>
 			<span class="fa fa-long-arrow-down nav-icon"></span>{{model.user.followers.length}}
 			<span class="link-separator">|</span>
-			<span class="profile-description">Following</span>
+			<span class="hidden-xs">Following</span>
 			<span class="fa fa-long-arrow-up nav-icon"></span>{{model.user.following.length}}
 			<span class="link-separator">|</span>
-			<span class="profile-description">Favorites</span>
+			<span class="hidden-xs">Favorites</span>
 			<span class="fa fa-heart nav-icon"></span>{{model.user.favorites.length}}
 		</h6>
 	</div>
@@ -78,7 +78,7 @@
 		<div class="center-content text-center">
 			<button type="submit" ng-click="model.toggleView()" class="btn btn-danger btn-yt">
 				<span class="fa fa-users"></span>
-				See recommendations from Network
+				Latest from Network
 			</button>
 		</div>
 		<hr/>
@@ -133,7 +133,7 @@
 		<div class="center-content text-center">
 			<button type="submit" ng-click="model.toggleView()" class="btn btn-danger btn-yt">
 				<span class="fa fa-youtube-play"></span>
-				See recommendations from iTube
+				Latest from iTube
 			</button>
 		</div>
 		<hr/>
