@@ -98,6 +98,15 @@ h6 a, h6 a:hover, h6 a:focus, h6 a:active{
 	font-size: medium;
 }
 
+.project-link, .project-link:hover, .project-link:focus, .project-link:active{
+	text-decoration: none;
+	color: white;
+}
+
+.project-link:hover, .project-link:focus, .project-link:active{
+	font-weight: bold;
+}
+
 @media (max-width: 767px){
 	.center-content{
 		width: 90%;
