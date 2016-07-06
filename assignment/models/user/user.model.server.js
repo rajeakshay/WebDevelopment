@@ -1,5 +1,6 @@
-module.exports = function(db, mongoose) {
-	var UserSchema = require("./user.schema.server.js")(mongoose);
+module.exports = function() {
+	var mongoose = require("mongoose");
+	var UserSchema = require("./user.schema.server.js")();
 	var User = mongoose.model("User", UserSchema);
 
 	return {

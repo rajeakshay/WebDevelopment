@@ -108,6 +108,8 @@ module.exports = function(app, models) {
 
 	function getYoutubeKey(req, res){
 		// Populate youtubeKey with your API key for Youtube Data API 3.0 to work on your local machine
+		// OR
+		// Set an environment variable named YOUTUBE_API_KEY with your API key
 		var youtubeKey = "";
 		if(process.env.YOUTUBE_API_KEY) {
 			youtubeKey =  process.env.YOUTUBE_API_KEY; // Openshift server environment variable

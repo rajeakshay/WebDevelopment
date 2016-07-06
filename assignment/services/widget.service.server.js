@@ -216,6 +216,8 @@ module.exports = function(app, models) {
 
 	function getFlickrKey(req, res){
 		// Populate flickrKey with your API key for Flickr Photo Search to work on your local machine
+		// OR
+		// Set an environment variable named FLICKR_API_KEY with your API Key
 		var flickrKey = "";
 		if(process.env.FLICKR_API_KEY) {
 			flickrKey =  process.env.FLICKR_API_KEY; // Openshift server environment variable

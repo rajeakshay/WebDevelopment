@@ -1,4 +1,5 @@
-module.exports = function(mongoose) {
+module.exports = function() {
+	var mongoose = require("mongoose");
 	var UserSchema = mongoose.Schema({
 		username: {type: String, required: true},
 		password: String,
