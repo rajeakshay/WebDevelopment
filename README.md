@@ -1,6 +1,9 @@
-# CS5610 Web Development [![GitHub license](https://img.shields.io/github/license/rajeakshay/WebDevelopment.svg?style=plastic)](https://github.com/rajeakshay/WebDevelopment/blob/master/LICENSE.md)
-Developing sites that are dynamic, data driven and interactive - [http://webdev-amraje.rhcloud.com/](http://webdev-amraje.rhcloud.com/)  
-
+# CS5610 Web Development (Summer 2016) [![GitHub license](https://img.shields.io/github/license/rajeakshay/WebDevelopment.svg?style=plastic)](https://github.com/rajeakshay/WebDevelopment/blob/master/LICENSE.md)
+Developing MEAN stack applications that are dynamic, data driven and interactive - [http://webdev-amraje.rhcloud.com/](http://webdev-amraje.rhcloud.com/)  
+  
+**Disclaimer -**  
+This repository is no longer actively maintained and supported. Flickr, Google and Facebook change their APIs regularly. Test the code locally before deploying to Redhat Openshift PaaS. Please read [LICENSE.md](https://github.com/rajeakshay/WebDevelopment/blob/master/LICENSE.md) before proceeding. The source code is designed to work for `node`, `npm` and `MongoDB` versions listed below.
+  
 RedHat Openshift Online application details:  
 URL: [http://webdev-amraje.rhcloud.com/](http://webdev-amraje.rhcloud.com/)  
 `node` version: `v4.4.4`  
@@ -14,7 +17,7 @@ MongoDB Community Edition version: `v3.2.6`
         https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml
         
   This will install a cartridge with **latest** version of **MongoDB Community Edition**. Note that this cartridge is bare-bones and provides `mongod` daemon with WiredTiger storage engine only. `mongo` shell and other goodies are not available and are not needed.
-3. The URL to your application's Openshift Git repository can be found on Openshift Web Console's application dashboard. It looks something like `ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git`. In your terminal, `git clone` `WebDevelopment` repository and add your application's Openshift Git repository as a remote repository.
+3. The URL to your application's Openshift Git repository can be found on Openshift Web Console's application dashboard. It looks something like `ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git`. In your terminal, `git clone` the `WebDevelopment` repository and add your application's Openshift Git repository as a remote repository.
 
         git clone https://github.com/rajeakshay/WebDevelopment.git
         git remote add openshift ssh://572f...000b8@appName-yourUserName.rhcloud.com/~/git/appName.git
@@ -120,8 +123,8 @@ I'll be more than happy to look into any bugs or improvement suggestions. Please
 This project is released under MIT License. You are free to modify, distribute, copy or sublicense this project. For the full text of the license, see [LICENSE.md](https://github.com/rajeakshay/WebDevelopment/blob/master/LICENSE.md).
 
 # Acknowledgements
-For the base template of this repository which is designed specifically for CS5610, visit Prof. Annunziato's repository named [web-dev-template](https://github.com/jannunzi/web-dev-template).
+Prof. Annunziato's [web-dev-template](https://github.com/jannunzi/web-dev-template), which is designed specifically for CS5610, provided the base template of this repository.
 
-Custom version of Node.js (v4.4.4 LTS) has been installed on RedHat's Openshift PaaS using configuration code sourced from ramr's excellent work [here](https://github.com/ramr/nodejs-custom-version-openshift). (See [.openshift](https://github.com/rajeakshay/WebDevelopment/tree/master/.openshift) directory)
+Configuration code sourced from ramr's excellent work [here](https://github.com/ramr/nodejs-custom-version-openshift), provided the base for installing custom version of Node.js (v4.4.4 LTS) on RedHat's Openshift PaaS. (See [.openshift](https://github.com/rajeakshay/WebDevelopment/tree/master/.openshift) directory)
 
-Custom cartridge with latest version of MongoDB Community Edition has been installed on RedHat's Openshift PaaS using icflorescu's [openshift-cartridge-mongodb](https://github.com/icflorescu/openshift-cartridge-mongodb).
+Cartridge with the latest version of MongoDB Community Edition was installed on RedHat's Openshift PaaS thanks to icflorescu's [openshift-cartridge-mongodb](https://github.com/icflorescu/openshift-cartridge-mongodb).
